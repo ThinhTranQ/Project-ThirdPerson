@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://fir-learning-3981c.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">1049437915092</string>
+  <string name="google_storage_bucket" translatable="false">fir-learning-3981c.appspot.com</string>
+  <string name="project_id" translatable="false">fir-learning-3981c</string>
+  <string name="google_api_key" translatable="false">AIzaSyC8k6lCHRIn9qKs7wZMlzWlESWVf7cLxQY</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC8k6lCHRIn9qKs7wZMlzWlESWVf7cLxQY</string>
+  <string name="google_app_id" translatable="false">1:1049437915092:android:9e99eeea66b22f3e48b841</string>
+  <string name="default_web_client_id" translatable="false">1049437915092-bgoi6qjamkuere81no52btssp5d7d9vk.apps.googleusercontent.com</string>
+</resources>

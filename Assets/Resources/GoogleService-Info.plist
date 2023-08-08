@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1049437915092-v88gqo4hb5anu8gv20rbo0kgfga9bgqh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1049437915092-v88gqo4hb5anu8gv20rbo0kgfga9bgqh</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1049437915092-3cv6mmrejrom1ebnsv9ct8pvinh1qqbr.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBkMC9uPNfzRh37qecIH-Kd-JFypxGfUBI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1049437915092</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.genify.testgame</string>
+	<key>PROJECT_ID</key>
+	<string>fir-learning-3981c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fir-learning-3981c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1049437915092:ios:3504fd2675e6eb6548b841</string>
+	<key>DATABASE_URL</key>
+	<string>https://fir-learning-3981c.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1049437915092",
+    "firebase_url": "https://fir-learning-3981c.firebaseio.com",
+    "project_id": "fir-learning-3981c",
+    "storage_bucket": "fir-learning-3981c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049437915092:android:9e99eeea66b22f3e48b841",
+        "android_client_info": {
+          "package_name": "com.genify.testgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049437915092-bgoi6qjamkuere81no52btssp5d7d9vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8k6lCHRIn9qKs7wZMlzWlESWVf7cLxQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049437915092-bgoi6qjamkuere81no52btssp5d7d9vk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1049437915092-2p12uflev7e1bu77d6ul1f8moccgqnei.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.google.SpeechToSpeech"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
