@@ -30,6 +30,12 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void UpdateState(float deltaTime)
     {
+        if (stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+        
         var movement = CalculateMovement();
         Move(movement * (stateMachine.FreeLookMovementSpeed), deltaTime);
 

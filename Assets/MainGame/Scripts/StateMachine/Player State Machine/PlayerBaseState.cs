@@ -11,6 +11,12 @@ namespace MainGame.StateMachine
          this.stateMachine = stateMachine;
       }
 
+      // move with not with input but force
+      protected void Move(float deltaTime)
+      {
+         Move(Vector3.zero, deltaTime);
+      }
+
       protected void Move(Vector3 motion, float deltaTime)
       {
          stateMachine.CharacterController.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
