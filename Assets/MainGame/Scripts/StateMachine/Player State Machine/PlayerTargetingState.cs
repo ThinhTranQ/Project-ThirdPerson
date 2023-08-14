@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerTargetingState : PlayerBaseState
 {
-    private static readonly int TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
-    private static readonly int TargetingForwardHash = Animator.StringToHash("TargetingForward");
-    private static readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
-
+    private static readonly int   TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
+    private static readonly int   TargetingForwardHash   = Animator.StringToHash("TargetingForward");
+    private static readonly int   TargetingRightHash     = Animator.StringToHash("TargetingRight");
+    private const           float CROSS_FADE_DURATION    = .1f;
     public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -16,7 +16,7 @@ public class PlayerTargetingState : PlayerBaseState
     public override void EnterState()
     {
         stateMachine.InputReader.CancelEvent += OnCancelTargetingState;
-        stateMachine.Animator.Play(TargetingBlendTreeHash);
+        stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash,CROSS_FADE_DURATION );
     }
 
 
@@ -24,6 +24,7 @@ public class PlayerTargetingState : PlayerBaseState
     {
         if (stateMachine.InputReader.IsAttacking)
         {
+            Debug.Log("attack");
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
             return;
         }
@@ -40,19 +41,19 @@ public class PlayerTargetingState : PlayerBaseState
         UpdateAnimation(deltaTime);
         
         FaceTarget();
-        return;
     }
 
   
 
     public override void ExitState()
     {
-        stateMachine.Targeter.CancelTarget();
+        
         stateMachine.InputReader.CancelEvent -= OnCancelTargetingState;
     }
 
     private void OnCancelTargetingState()
     {
+        stateMachine.Targeter.CancelTarget();
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
 

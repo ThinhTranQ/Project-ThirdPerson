@@ -9,6 +9,7 @@ namespace MainGame.StateMachine
         private Attack attack;
 
         private bool isAppliedForce;
+
         public PlayerAttackingState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
         {
             attack = stateMachine.AttackCombo[attackIndex];
@@ -16,15 +17,16 @@ namespace MainGame.StateMachine
 
         public override void EnterState()
         {
+            stateMachine.WeaponDamage.SetAttackDamage(attack.Damage);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
         }
 
         public override void UpdateState(float deltaTime)
         {
             Move(deltaTime);
-            
+
             FaceTarget();
-            
+
             var normalizeTime = GetNormalizeTime();
 
             // if normalize time is equal or more than 1 so the animation is finish
@@ -35,7 +37,7 @@ namespace MainGame.StateMachine
                 {
                     TryApplyForce();
                 }
-                
+
                 if (stateMachine.InputReader.IsAttacking)
                 {
                     TryComboAttack(normalizeTime);
@@ -48,7 +50,7 @@ namespace MainGame.StateMachine
                     stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
                 }
                 else
-                { 
+                {
                     stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
                 }
             }
@@ -63,9 +65,6 @@ namespace MainGame.StateMachine
 
         private void TryComboAttack(float normalizeTime)
         {
-           
-            
-            
             if (attack.ComboStateIndex == -1) return;
 
             if (normalizeTime < attack.ComboAttackTime) return;
@@ -86,11 +85,12 @@ namespace MainGame.StateMachine
             stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * attack.Force);
             isAppliedForce = true;
         }
+
         private float GetNormalizeTime()
         {
             var currentInfo = stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
             var nextInfo = stateMachine.Animator.GetNextAnimatorStateInfo(0);
- 
+
             if (stateMachine.Animator.IsInTransition(0) && nextInfo.IsTag("Attack"))
             {
                 return nextInfo.normalizedTime;

@@ -66,12 +66,14 @@ public class Targeter : MonoBehaviour
    public void CancelTarget()
    {
       if (currentTarget == null) return;
+      print("cancel target");
       cinemachineTargetGroup.RemoveMember(currentTarget.transform);
       currentTarget = null;
       
    }
    private void RemoveTarget(Target target)
    {
+      
       if (currentTarget == target)
       {
          cinemachineTargetGroup.RemoveMember(currentTarget.transform);

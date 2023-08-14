@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MainGame.StateMachine;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class PlayerFreeLookState : PlayerBaseState
@@ -9,6 +10,8 @@ public class PlayerFreeLookState : PlayerBaseState
     private static readonly int FreeLookBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
 
     private const float ANIMATOR_DAMP_TIME = .1f;
+
+    private const float CROSS_FADE_DURATION = .1f;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine){}
     
     // we can make another variable and it would call base store the statemachine and then it would store x variable
@@ -24,7 +27,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.TargetEvent += OnTargetTrigger;
         
-        stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CROSS_FADE_DURATION);
 
     }
 
