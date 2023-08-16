@@ -33,6 +33,7 @@ public class PlayerStateMachine : StateMachine
 
     private void HandleTakeDamage()
     {
+        Debug.Log("handle Take Damage");
         SwitchState(new PlayerImpactState(this));
     }
     private static readonly int Impact = Animator.StringToHash("Impact");

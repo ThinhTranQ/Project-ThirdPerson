@@ -5,7 +5,7 @@ namespace MainGame.StateMachine
 {
     public class EnemyImpactState : EnemyBaseState
     {
-        private static readonly int Impact = Animator.StringToHash("Impact");
+        private readonly int Impact = Animator.StringToHash("Impact");
 
         private const float CrossFadeDuration = .1f;
         private  float duration = 1f;

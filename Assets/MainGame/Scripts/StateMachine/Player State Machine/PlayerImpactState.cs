@@ -4,11 +4,11 @@ namespace MainGame.StateMachine
 {
     public class PlayerImpactState : PlayerBaseState
     {
-        private static readonly int Impact = Animator.StringToHash("Impact");
+        private readonly int Impact = Animator.StringToHash("Impact");
 
         private const float CrossFadeDuration = .1f;
 
-        private float duration;
+        private float duration = 1f;
         
         public PlayerImpactState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
@@ -16,6 +16,7 @@ namespace MainGame.StateMachine
 
         public override void EnterState()
         {
+            Debug.Log("Enter impact");
             stateMachine.Animator.CrossFadeInFixedTime(Impact, CrossFadeDuration);
         }
 

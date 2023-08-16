@@ -43,15 +43,23 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public override void ExitState()
         {
-            stateMachine.Agent.ResetPath();
-            stateMachine.Agent.velocity = Vector3.zero;
+            if (stateMachine.Agent.isOnNavMesh)
+            {
+                stateMachine.Agent.ResetPath();
+                stateMachine.Agent.velocity = Vector3.zero; 
+            }
+            
         }
         private void MoveToPlayer(float deltaTime)
         {
-            stateMachine.Agent.destination = stateMachine.Player.transform.position;
+            if (stateMachine.Agent.isOnNavMesh)
+            {
+                stateMachine.Agent.destination = stateMachine.Player.transform.position;
             
-            Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
+                Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
 
+            }
+         
             // update agent movement = character controller movement
             stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
         }
