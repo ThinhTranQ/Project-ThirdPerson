@@ -19,6 +19,16 @@ public abstract class EnemyBaseState : State
     {
         stateMachine.CharacterController.Move((motion + stateMachine.ForceReceiver.Movement) * deltaTime);
     }
+
+    protected void FacePlayer()
+    {
+        if (stateMachine.Player == null) return;
+
+        var lookDirection = stateMachine.Player.transform.position - stateMachine.transform.position;
+        lookDirection.y = 0f;
+
+        stateMachine.transform.rotation = Quaternion.LookRotation(lookDirection);
+    }
     protected bool IsInChaseRange()
     {
        var distance = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;

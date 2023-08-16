@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 
     private float currentHealth;
 
+    public event Action OnTakeDamage; 
     private void Start()
     {
         currentHealth = maxHealth;
@@ -21,6 +22,9 @@ public class Health : MonoBehaviour
             return;
         }
         currentHealth = Mathf.Max(currentHealth - damage, 0);
+        
+        OnTakeDamage?.Invoke();
+        
         Debug.Log(currentHealth);
     }
 }

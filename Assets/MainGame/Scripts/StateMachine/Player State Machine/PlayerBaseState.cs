@@ -32,6 +32,18 @@ namespace MainGame.StateMachine
          stateMachine.transform.rotation = Quaternion.LookRotation(lookDirection);
       }
 
+      protected void ReturnToLocomotion()
+      {
+         if (stateMachine.Targeter.GetCurrentTarget() != null)
+         {
+            stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+         }
+         else
+         {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+         }
+      }
+
     
    }
 }

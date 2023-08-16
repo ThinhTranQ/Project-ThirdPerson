@@ -17,7 +17,7 @@ namespace MainGame.StateMachine
 
         public override void EnterState()
         {
-            stateMachine.WeaponDamage.SetAttackDamage(attack.Damage);
+            stateMachine.WeaponDamage.SetAttackDamage(attack.Damage, attack.KnockBack);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
         }
 
@@ -27,7 +27,7 @@ namespace MainGame.StateMachine
 
             FaceTarget();
 
-            var normalizeTime = GetNormalizeTime();
+            var normalizeTime = GetNormalizeTime(stateMachine.Animator);
 
             // if normalize time is equal or more than 1 so the animation is finish
             if (normalizeTime >= previousFrameTIme && normalizeTime < 1)
@@ -86,23 +86,6 @@ namespace MainGame.StateMachine
             isAppliedForce = true;
         }
 
-        private float GetNormalizeTime()
-        {
-            var currentInfo = stateMachine.Animator.GetCurrentAnimatorStateInfo(0);
-            var nextInfo = stateMachine.Animator.GetNextAnimatorStateInfo(0);
-
-            if (stateMachine.Animator.IsInTransition(0) && nextInfo.IsTag("Attack"))
-            {
-                return nextInfo.normalizedTime;
-            }
-            else if (!stateMachine.Animator.IsInTransition(0) && currentInfo.IsTag("Attack"))
-            {
-                return currentInfo.normalizedTime;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+       
     }
 }
