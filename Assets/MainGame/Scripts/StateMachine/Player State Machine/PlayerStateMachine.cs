@@ -1,4 +1,5 @@
 ﻿using System;
+using MainGame.Gameplay.Combat;
 using MainGame.StateMachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,35 +14,40 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReceiver       ForceReceiver       { get; private set; }
     [field: SerializeField] public WeaponDamage        WeaponDamage        { get; private set; }
     [field: SerializeField] public Health        Health        { get; private set; }
+    [field: SerializeField] public Ragdoll        Ragdoll        { get; private set; }
 
     [field: SerializeField] public float FreeLookMovementSpeed  { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float RotationDamping        { get; private set; }
+    [field: SerializeField] public float DodgeDuration          { get; private set; }
+    [field: SerializeField] public float DodgeDistance          { get; private set; }
+    
 
-
-    public Transform MainCamera { get; private set; }
+    public float     PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
+    public Transform MainCamera        { get; private set; } 
 
     private void OnEnable()
     {
         Health.OnTakeDamage += HandleTakeDamage;
+        Health.OnDie        += HandleDie;
     }
 
     private void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
+        Health.OnDie        -= HandleDie;
     }
 
     private void HandleTakeDamage()
     {
-        Debug.Log("handle Take Damage");
         SwitchState(new PlayerImpactState(this));
     }
-    private static readonly int Impact = Animator.StringToHash("Impact");
-    [Button]
-    public void Test()
+
+    private void HandleDie()
     {
-        Animator.CrossFadeInFixedTime(Impact, .1f);
+        SwitchState(new PlayerDeadState(this));
     }
+
     private void Start()
     {
         if (Camera.main != null) MainCamera = Camera.main.transform;

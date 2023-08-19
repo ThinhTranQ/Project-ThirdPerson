@@ -29,8 +29,10 @@ public abstract class EnemyBaseState : State
 
         stateMachine.transform.rotation = Quaternion.LookRotation(lookDirection);
     }
-    protected bool IsInChaseRange()
+    protected bool IsInChaseRange() 
     {
+        if (stateMachine.Player.IsDead) return false;
+        
        var distance = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 
        return distance <= stateMachine.PlayerChasingRange * stateMachine.PlayerChasingRange;

@@ -66,6 +66,8 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
         
         private bool IsinAttackRange()
         {
+            if (stateMachine.Player.IsDead) return false;
+            
             var distance = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
 
             return distance < stateMachine.AttackRange * stateMachine.AttackRange;

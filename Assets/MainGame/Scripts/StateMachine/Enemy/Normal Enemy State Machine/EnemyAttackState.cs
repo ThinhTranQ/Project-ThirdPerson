@@ -13,6 +13,8 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public override void EnterState()
         {
+            
+            
             stateMachine.Weapon.SetAttackDamage(stateMachine.AttackDamage, stateMachine.AttackKnockBack);
 
             stateMachine.Animator.CrossFadeInFixedTime(Attack, TransitionDuration);
@@ -24,6 +26,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             {
                 stateMachine.SwitchState(new EnemyChasingState(stateMachine));
             }
+            FacePlayer();
         }
 
         public override void ExitState()
