@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     private float currentHealth;
 
-    private bool isInvulnerable;
+    [SerializeField]private bool isInvulnerable;
 
     public bool IsDead => currentHealth <= 0;
 
@@ -20,6 +20,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public bool GetInvulnerableState()
+    {
+        return isInvulnerable;
+    }
     public void SetInvulnerable(bool isInvulnerable)
     {
         this.isInvulnerable = isInvulnerable;

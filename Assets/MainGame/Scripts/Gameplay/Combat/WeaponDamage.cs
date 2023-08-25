@@ -5,26 +5,35 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] private Collider source;
+    [SerializeField] private Collider       source;
+    private                  List<Collider> alreadyCollidedWith = new List<Collider>();
+    protected                Health         sourceHealth;
+    private                  float          damage;
+    private                  float          knockback;
 
-    private List<Collider> alreadyCollidedWith = new List<Collider>();
+    private void Start()
+    {
+        sourceHealth = GetComponentInParent<Health>();
+    }
 
-    private float damage;
-    private float knockback;
-    
     private void OnEnable()
     {
         alreadyCollidedWith.Clear();
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other == source) return;
 
         if (alreadyCollidedWith.Contains(other)) return;
-        
+
         alreadyCollidedWith.Add(other);
-        
+
+        DealDamageToEnemy(other);
+    }
+
+    protected virtual void DealDamageToEnemy(Collider other)
+    {
         if (other.TryGetComponent<Health>(out var health))
         {
             health.DealDamage(damage);

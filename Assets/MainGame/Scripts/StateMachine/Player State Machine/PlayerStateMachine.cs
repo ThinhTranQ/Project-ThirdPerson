@@ -21,9 +21,8 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float RotationDamping        { get; private set; }
     [field: SerializeField] public float DodgeDuration          { get; private set; }
     [field: SerializeField] public float DodgeDistance          { get; private set; }
+    [field: SerializeField] public bool canDeflect          { get; set; }
     
-
-    public float     PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
     public Transform MainCamera        { get; private set; } 
 
     private void OnEnable()

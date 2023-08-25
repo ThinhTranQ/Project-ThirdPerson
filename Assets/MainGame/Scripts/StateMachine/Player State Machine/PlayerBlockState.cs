@@ -12,7 +12,7 @@ namespace MainGame.StateMachine
 
         public override void EnterState()
         {
-            stateMachine.Health.SetInvulnerable(true);
+            // stateMachine.Health.SetInvulnerable(true);
             stateMachine.Animator.CrossFadeInFixedTime(Block, CrossFadeDuration);
         }
 

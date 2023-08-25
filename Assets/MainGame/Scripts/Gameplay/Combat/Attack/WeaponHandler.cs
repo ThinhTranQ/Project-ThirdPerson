@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject weaponLogic;
-
+    [SerializeField] private GameObject         weaponLogic;
+    [SerializeField] private PlayerStateMachine playerStateMachine;
     public void EnableWeapon()
     {
         weaponLogic.SetActive(true);
@@ -15,4 +15,16 @@ public class WeaponHandler : MonoBehaviour
     {
         weaponLogic.SetActive(false);
     }
+
+    public void EnableVulnerable()
+    {
+        playerStateMachine.canDeflect = true;
+        playerStateMachine.Health.SetInvulnerable(true);
+    }
+     public void DisableVulnerable()
+    {
+        playerStateMachine.canDeflect = false;
+    }
+    
+    
 }
