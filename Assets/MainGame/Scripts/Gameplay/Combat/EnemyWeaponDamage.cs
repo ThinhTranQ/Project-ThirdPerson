@@ -12,6 +12,7 @@ namespace MainGame.Gameplay.Combat
                 {
                     print("deflect");
                     sourceHealth.DealDamage(0);
+                    gameObject.SetActive(false);
                     return;
                 }
             }

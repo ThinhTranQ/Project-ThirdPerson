@@ -24,7 +24,7 @@ public class WeaponDamage : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other == source) return;
-
+        
         if (alreadyCollidedWith.Contains(other)) return;
 
         alreadyCollidedWith.Add(other);
