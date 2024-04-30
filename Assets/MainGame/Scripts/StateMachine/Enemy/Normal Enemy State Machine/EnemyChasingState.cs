@@ -28,7 +28,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             }
             else if (IsinAttackRange())
             {
-                stateMachine.SwitchState(new EnemyAttackState(stateMachine));
+                stateMachine.SwitchState(new EnemyAttackState(stateMachine, 0));
                 return;
             }
 

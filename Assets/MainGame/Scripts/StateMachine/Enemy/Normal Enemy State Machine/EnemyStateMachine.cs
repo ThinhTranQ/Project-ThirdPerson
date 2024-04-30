@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MainGame.Gameplay.Combat;
 using MainGame.StateMachine;
 using MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,6 +18,8 @@ public class EnemyStateMachine : StateMachine
    [field: SerializeField] public Health              Health              { get; protected set; }
    [field: SerializeField] public Target              Target              { get; protected set; }
    [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
+   
+   [field: SerializeField] public Attack[] AttackCombo { get; private set; }
    
    [field: SerializeField] public float PlayerChasingRange { get; protected set; }
    [field: SerializeField] public float MovementSpeed      { get; protected set; }
@@ -55,11 +58,17 @@ public class EnemyStateMachine : StateMachine
       
       SwitchState(new EnemyIdleState(this));
    }
-
+   
    protected virtual void OnDrawGizmos()
    {
       Gizmos.color = Color.red;
       Gizmos.DrawWireSphere(transform.position, PlayerChasingRange);
+   }
+
+   [Button]
+   public void TransitionToAttack()
+   {
+      SwitchState(new EnemyAttackState(this, 0));
    }
 }
  
