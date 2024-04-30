@@ -59,7 +59,7 @@ public class Targeter : MonoBehaviour
       if (closestTarget == null) return false;
       
       currentTarget = closestTarget;
-      cinemachineTargetGroup.AddMember(currentTarget.transform, 1f, 2f);
+      cinemachineTargetGroup.AddMember(currentTarget.transform, 0f, 2f);
       return true;
    }
 

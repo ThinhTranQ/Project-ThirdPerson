@@ -9,44 +9,44 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : StateMachine
 {
-   [field: SerializeField] public Animator Animator { get; private set; }
-   [field: SerializeField] public CharacterController CharacterController { get; private set; }
-   [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
-   [field: SerializeField] public NavMeshAgent Agent { get; private set; }
-   [field: SerializeField] public WeaponDamage Weapon { get; private set; }
-   [field: SerializeField] public Health Health { get; private set; }
-   [field: SerializeField] public Target Target { get; private set; }
-   [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+   [field: SerializeField] public Animator            Animator            { get; protected set; }
+   [field: SerializeField] public CharacterController CharacterController { get; protected set; }
+   [field: SerializeField] public ForceReceiver       ForceReceiver       { get; protected set; }
+   [field: SerializeField] public NavMeshAgent        Agent               { get; protected set; }
+   [field: SerializeField] public WeaponDamage        Weapon              { get; protected set; }
+   [field: SerializeField] public Health              Health              { get; protected set; }
+   [field: SerializeField] public Target              Target              { get; protected set; }
+   [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
    
-   [field: SerializeField] public float PlayerChasingRange { get; private set; }
-   [field: SerializeField] public float MovementSpeed { get; private set; }
-   [field: SerializeField] public float AttackRange { get; private set; }
-   [field: SerializeField] public float AttackDamage { get; private set; }
-   [field: SerializeField] public float AttackKnockBack { get; private set; }
+   [field: SerializeField] public float PlayerChasingRange { get; protected set; }
+   [field: SerializeField] public float MovementSpeed      { get; protected set; }
+   [field: SerializeField] public float AttackRange        { get; protected set; }
+   [field: SerializeField] public float AttackDamage       { get; protected set; }
+   [field: SerializeField] public float AttackKnockBack    { get; protected set; }
 
    public Health Player { get; private set; }
    
-   private void OnEnable()
+   protected virtual void OnEnable()
    {
       Health.OnTakeDamage += HandleTakeDamage;
       Health.OnDie        += HandleDie;
    }
 
-   private void OnDisable()
+   protected virtual void OnDisable()
    {
       Health.OnTakeDamage -= HandleTakeDamage;
       Health.OnDie        -= HandleDie;
    }
 
-   private void HandleTakeDamage()
+   protected virtual void HandleTakeDamage()
    {
       SwitchState(new EnemyImpactState(this));
    }
-   private void HandleDie()
+   protected virtual void HandleDie()
    {
       SwitchState(new EnemyDeadState(this));
    }
-   private void Start()
+   protected virtual void Start()
    {
       Player               = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
       
@@ -56,7 +56,7 @@ public class EnemyStateMachine : StateMachine
       SwitchState(new EnemyIdleState(this));
    }
 
-   private void OnDrawGizmos()
+   protected virtual void OnDrawGizmos()
    {
       Gizmos.color = Color.red;
       Gizmos.DrawWireSphere(transform.position, PlayerChasingRange);

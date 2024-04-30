@@ -67,7 +67,7 @@ namespace MainGame.StateMachine
         {
             if (attack.ComboStateIndex == -1) return;
 
-            if (normalizeTime < attack.ComboAttackTime) return;
+            if (normalizeTime < attack.CanTransitionCombo) return;
 
             stateMachine.SwitchState
             (
