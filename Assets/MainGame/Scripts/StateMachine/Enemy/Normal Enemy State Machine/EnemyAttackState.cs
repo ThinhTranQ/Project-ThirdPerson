@@ -11,7 +11,8 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public EnemyAttackState(EnemyStateMachine stateMachine, int index) : base(stateMachine)
         {
-            attack = stateMachine.AttackCombo[index];
+            Debug.Log("Enter Attack State");
+            attack = stateMachine.Combo.GetCurrentAttack(index);
         }
 
         public override void EnterState()
@@ -28,7 +29,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             
             var normalizeTime = GetNormalizeTime(stateMachine.Animator);
 
-            if (normalizeTime >= previousFrameTIme && normalizeTime < 2)
+            if (normalizeTime >= previousFrameTIme && normalizeTime < 1)
             {
                 // apply force when time 
                 if (normalizeTime >= attack.ForceTime)
@@ -62,8 +63,9 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             if (attack.ComboStateIndex == -1)
             {
                 Debug.Log($"Transit to chasing state");
+                stateMachine.ChangeCombo();
                 stateMachine.SwitchState(
-                    new EnemyChasingState(stateMachine));
+                    new EnemyPatrolState(stateMachine));
                 return;
             }
             

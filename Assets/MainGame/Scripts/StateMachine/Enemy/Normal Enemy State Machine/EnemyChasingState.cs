@@ -12,6 +12,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
         
         public EnemyChasingState(EnemyStateMachine stateMachine) : base(stateMachine)
         {
+            Debug.Log("Enter Chasing State");
         }
 
         public override void EnterState()

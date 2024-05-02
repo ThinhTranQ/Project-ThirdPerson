@@ -17,6 +17,7 @@ namespace MainGame.StateMachine
         public override void EnterState() 
         {
             stateMachine.Animator.CrossFadeInFixedTime(Impact, CrossFadeDuration);
+            stateMachine.WeaponHandler.DisableWeapon();
         }
 
         public override void UpdateState(float deltaTime)

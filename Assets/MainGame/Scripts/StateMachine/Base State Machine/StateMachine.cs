@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
-    private State currentState;
+    [SerializeField] protected State currentState;
 
     public void SwitchState(State newState)
     {
@@ -13,7 +13,7 @@ public abstract class StateMachine : MonoBehaviour
         currentState?.EnterState();
     }
     
-    void Update()
+    protected virtual void Update()
     {
         // check that current state is null
         // null conditional operator and do not work with monobehavior
