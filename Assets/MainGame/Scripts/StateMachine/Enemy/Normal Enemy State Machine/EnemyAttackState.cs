@@ -21,8 +21,11 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
         {
             stateMachine.Weapon.SetAttackDamage(attack.Damage, attack.KnockBack);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, TransitionDuration);
-
+            stateMachine.SetInterrupt(attack.CanBeInterrupt);
             cantFacePlayer = attack.CantFacePlayer;
+            
+            
+            
         }
 
         public override void UpdateState(float deltaTime)
@@ -45,11 +48,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
                 TryComboAttack(normalizeTime);
             }
-
-            // if (GetNormalizeTime(stateMachine.Animator) >= 1)
-            // {
-            //     stateMachine.SwitchState(new EnemyChasingState(stateMachine));
-            // }
+            
 
             previousFrameTIme = normalizeTime;
         }
@@ -64,11 +63,11 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
             if (normalizeTime < attack.CanTransitionCombo) return;
 
-            Debug.Log($"Can transit combo {normalizeTime} {attack.CanTransitionCombo}");
+            // Debug.Log($"Can transit combo {normalizeTime} {attack.CanTransitionCombo}");
 
             if (attack.ComboStateIndex == -1)
             {
-                Debug.Log($"Transit to chasing state");
+                // Debug.Log($"Transit to chasing state");
                 stateMachine.ChangeCombo();
                 stateMachine.SwitchState(
                     new EnemyPatrolState(stateMachine));

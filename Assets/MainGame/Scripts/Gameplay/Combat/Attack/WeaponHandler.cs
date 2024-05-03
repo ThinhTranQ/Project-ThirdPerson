@@ -18,12 +18,13 @@ public class WeaponHandler : MonoBehaviour
 
     public void EnableVulnerable()
     {
-        playerStateMachine.canDeflect = true;
+        print("Turn on Deflect");
+        playerStateMachine.CanDeflect = true;
         playerStateMachine.Health.SetInvulnerable(true);
     }
      public void DisableVulnerable()
     {
-        playerStateMachine.canDeflect = false;
+        playerStateMachine.CanDeflect = false;
         
     }
     

@@ -21,11 +21,13 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
 
     [field: SerializeField] public EnemyCombo Combo { get; private set; }
-
+    
+    [field: SerializeField] public BlockDurability BlockDurability { get; private set; }
 
     [field: SerializeField] public float PlayerChasingRange { get; protected set; }
     [field: SerializeField] public float MovementSpeed      { get; protected set; }
     [field: SerializeField] public float AttackRange        { get; protected set; }
+    [field: SerializeField] public bool CanInterrupt        { get; protected set; }
 
     public Health Player { get; private set; }
 
@@ -43,6 +45,7 @@ public class EnemyStateMachine : StateMachine
 
     protected virtual void HandleTakeDamage()
     {
+        if (!CanInterrupt) return;
         SwitchState(new EnemyImpactState(this));
     }
 
@@ -85,5 +88,10 @@ public class EnemyStateMachine : StateMachine
     {
         Combo.ChangeCombo();
         
+    }
+
+    public void SetInterrupt(bool canInterrupt)
+    {
+        CanInterrupt = canInterrupt;
     }
 }

@@ -14,4 +14,5 @@ public class Attack
     [field: SerializeField] public float     Damage             { get; private set; }
     [field: SerializeField] public float     KnockBack          { get; private set; }
     [field: SerializeField] public bool     CantFacePlayer          { get; private set; }
+    [field: SerializeField] public bool     CanBeInterrupt          { get; private set; }
 }

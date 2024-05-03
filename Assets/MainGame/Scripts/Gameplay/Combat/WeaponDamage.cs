@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] private Collider       source;
-    private                  List<Collider> alreadyCollidedWith = new List<Collider>();
-    protected                Health         sourceHealth;
-    private                  float          damage;
-    private                  float          knockback;
+    [SerializeField] protected Collider       source;
+    private                    List<Collider> alreadyCollidedWith = new List<Collider>();
+    protected                  Health         sourceHealth;
+    protected                  float          damage;
+    protected                  float          knockback;
 
     private void Start()
     {
@@ -24,7 +24,8 @@ public class WeaponDamage : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other == source) return;
-        
+
+
         if (alreadyCollidedWith.Contains(other)) return;
 
         alreadyCollidedWith.Add(other);
@@ -43,6 +44,12 @@ public class WeaponDamage : MonoBehaviour
         {
             var direction = (other.transform.position - source.transform.position).normalized;
             forceReceiver.AddForce(direction * knockback);
+        }
+
+        if (other.TryGetComponent<Damagable>(out _))
+        {
+            Debug.Log("SSS " + other);
+            EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
         }
     }
 
