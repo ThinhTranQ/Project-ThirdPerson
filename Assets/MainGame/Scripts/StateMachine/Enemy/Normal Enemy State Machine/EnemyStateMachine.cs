@@ -20,15 +20,12 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Target              Target              { get; protected set; }
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
 
-    [field: SerializeField] public Attack[]   AttackCombo { get; private set; }
-    [field: SerializeField] public EnemyCombo Combo       { get; private set; }
+    [field: SerializeField] public EnemyCombo Combo { get; private set; }
 
 
     [field: SerializeField] public float PlayerChasingRange { get; protected set; }
     [field: SerializeField] public float MovementSpeed      { get; protected set; }
     [field: SerializeField] public float AttackRange        { get; protected set; }
-    [field: SerializeField] public float AttackDamage       { get; protected set; }
-    [field: SerializeField] public float AttackKnockBack    { get; protected set; }
 
     public Health Player { get; private set; }
 
@@ -37,7 +34,7 @@ public class EnemyStateMachine : StateMachine
         Health.OnTakeDamage += HandleTakeDamage;
         Health.OnDie        += HandleDie;
     }
-    
+
     protected virtual void OnDisable()
     {
         Health.OnTakeDamage -= HandleTakeDamage;
@@ -76,15 +73,17 @@ public class EnemyStateMachine : StateMachine
         SwitchState(new EnemyAttackState(this, 0));
     }
 
-    public void SetAnimator(AnimatorOverrideController animator)
+    public void ImplementNewCombo(ComboList comboList)
     {
-        Animator.runtimeAnimatorController = animator;
+        Animator.runtimeAnimatorController = comboList.animator;
+        AttackRange                        = comboList.attackRange;
+
     }
+
 
     public void ChangeCombo()
     {
         Combo.ChangeCombo();
+        
     }
-    
-    
 }

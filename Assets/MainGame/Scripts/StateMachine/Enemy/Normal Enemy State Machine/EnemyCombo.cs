@@ -9,7 +9,8 @@ public class EnemyCombo : MonoBehaviour
      private EnemyStateMachine enemy;
      private ComboList         currentCombo;
 
-     private int currentIndex;
+     private int  currentIndex;
+     public  bool canChangeCombo;
      
      private void Start()
      {
@@ -37,6 +38,11 @@ public class EnemyCombo : MonoBehaviour
                currentIndex = 0;
           }
 
+          if (!canChangeCombo)
+          {
+               currentIndex = 0;
+          }
+          
           ImplementCombo();
 
      }

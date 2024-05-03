@@ -4,10 +4,12 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 {
     public class EnemyAttackState : EnemyBaseState
     {
-        private const float  TransitionDuration = .1f;
-        private       float  previousFrameTIme;
-        private       Attack attack;
-        private       bool   isAppliedForce;
+        private const float TransitionDuration = .1f;
+        private       float previousFrameTIme;
+        private       bool  isAppliedForce;
+        private       bool  cantFacePlayer;
+
+        private Attack attack;
 
         public EnemyAttackState(EnemyStateMachine stateMachine, int index) : base(stateMachine)
         {
@@ -18,15 +20,19 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
         public override void EnterState()
         {
             stateMachine.Weapon.SetAttackDamage(attack.Damage, attack.KnockBack);
-
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, TransitionDuration);
+
+            cantFacePlayer = attack.CantFacePlayer;
         }
 
         public override void UpdateState(float deltaTime)
         {
             Move(deltaTime);
-            FacePlayer();
-            
+            if (!cantFacePlayer)
+            {
+                FacePlayer();
+            }
+
             var normalizeTime = GetNormalizeTime(stateMachine.Animator);
 
             if (normalizeTime >= previousFrameTIme && normalizeTime < 1)
@@ -48,7 +54,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             previousFrameTIme = normalizeTime;
         }
 
-        public override void ExitState() 
+        public override void ExitState()
         {
         }
 
@@ -57,7 +63,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
             // if (attack.ComboStateIndex == -1) return;
 
             if (normalizeTime < attack.CanTransitionCombo) return;
-            
+
             Debug.Log($"Can transit combo {normalizeTime} {attack.CanTransitionCombo}");
 
             if (attack.ComboStateIndex == -1)
@@ -68,13 +74,13 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
                     new EnemyPatrolState(stateMachine));
                 return;
             }
-            
+
             stateMachine.SwitchState
             (
                 new EnemyAttackState
                 (
                     stateMachine,
-                    attack.ComboStateIndex 
+                    attack.ComboStateIndex
                 )
             );
         }

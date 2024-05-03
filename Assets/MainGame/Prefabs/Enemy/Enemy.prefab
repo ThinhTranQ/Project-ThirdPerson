@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 4179896549285141888}
   - component: {fileID: 8139460967899219619}
   - component: {fileID: 4646302241456209771}
+  - component: {fileID: 800387095031757732}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900108362552857376}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 14.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -173,12 +174,39 @@ MonoBehaviour:
   <ForceReceiver>k__BackingField: {fileID: 8139460967899219619}
   <Agent>k__BackingField: {fileID: 6765618096183543716}
   <Weapon>k__BackingField: {fileID: 8145191466580134894}
+  <WeaponHandler>k__BackingField: {fileID: 6821181398645174548}
   <Health>k__BackingField: {fileID: 4179896549285141888}
   <Target>k__BackingField: {fileID: 2904513414379644528}
   <Ragdoll>k__BackingField: {fileID: 4646302241456209771}
+  <AttackCombo>k__BackingField:
+  - <AnimationName>k__BackingField: Attack1
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 1
+    <CanTransitionCombo>k__BackingField: 0.4
+    <ForceTime>k__BackingField: 0.1
+    <Force>k__BackingField: 10
+    <Damage>k__BackingField: 0
+    <KnockBack>k__BackingField: 2
+  - <AnimationName>k__BackingField: Attack2
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 2
+    <CanTransitionCombo>k__BackingField: 0.5
+    <ForceTime>k__BackingField: 0.07
+    <Force>k__BackingField: 10
+    <Damage>k__BackingField: 0
+    <KnockBack>k__BackingField: 5
+  - <AnimationName>k__BackingField: Attack3
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: -1
+    <CanTransitionCombo>k__BackingField: 0.9
+    <ForceTime>k__BackingField: 0.23
+    <Force>k__BackingField: 20
+    <Damage>k__BackingField: 0
+    <KnockBack>k__BackingField: 10
+  <Combo>k__BackingField: {fileID: 800387095031757732}
   <PlayerChasingRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 2
-  <AttackRange>k__BackingField: 1.5
+  <AttackRange>k__BackingField: 3
   <AttackDamage>k__BackingField: 10
   <AttackKnockBack>k__BackingField: 20
 --- !u!143 &3062942829774682981
@@ -269,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3062942829774682981}
   agent: {fileID: 6765618096183543716}
-  drag: 0.5
+  drag: 0.1
 --- !u!114 &4646302241456209771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +312,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 6028311990319183031}
   controller: {fileID: 3062942829774682981}
+--- !u!114 &800387095031757732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900108362552857376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e891565f01ed44128b0918e03f93657c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboLists:
+  - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
+  - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
 --- !u!1001 &91050533714677145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,6 +435,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8436060376179169519}
     m_Modifications:
+    - target: {fileID: 2281052156734827963, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3954462920158250338, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -462,6 +510,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6244734788314962794, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 3062942829774682981}
     - target: {fileID: 9017384348724073279, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: m_Name

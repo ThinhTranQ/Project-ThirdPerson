@@ -30,6 +30,7 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleTakeDamage;
         Health.OnDie        += HandleDie;
+        
     }
 
     private void OnDisable()

@@ -6,6 +6,8 @@ namespace MainGame.StateMachine
     {
         private readonly int   Block             = Animator.StringToHash("Block");
         private const    float CrossFadeDuration = .1f;
+
+        private float parryTime;
         public PlayerBlockState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
@@ -14,19 +16,21 @@ namespace MainGame.StateMachine
         {
             // stateMachine.Health.SetInvulnerable(true);
             stateMachine.Animator.CrossFadeInFixedTime(Block, CrossFadeDuration);
+            parryTime -= Time.deltaTime;
         }
 
         public override void UpdateState(float deltaTime)
         {
             Move(deltaTime);
-
+            
+            
             if (!stateMachine.InputReader.IsBlocking)
             {
                 stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
                
                 return;
             }
-
+            
             if (stateMachine.Targeter.GetCurrentTarget() == null)
             {
                 stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));

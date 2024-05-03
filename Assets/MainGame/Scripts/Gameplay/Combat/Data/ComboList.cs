@@ -10,8 +10,6 @@ public class ComboList : ScriptableObject
 
     public void ImplementCombo(EnemyStateMachine enemy)
     {
-       enemy.SetAnimator(animator);
-        
-        
+        enemy.ImplementNewCombo(this);
     }
 }

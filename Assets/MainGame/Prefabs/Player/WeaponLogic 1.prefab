@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3229641597028535015}
   - component: {fileID: 4644543556492076617}
   m_Layer: 0
-  m_Name: WeaponLogic
+  m_Name: WeaponLogic 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

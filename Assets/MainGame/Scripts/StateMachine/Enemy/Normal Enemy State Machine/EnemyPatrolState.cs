@@ -32,7 +32,6 @@ public class EnemyPatrolState : EnemyBaseState
         patrolTime -= Time.deltaTime;
         if (patrolTime >= 0)
         {
-            Debug.Log(patrolTime);
             Move(randomDirection, deltaTime);
         }
         else

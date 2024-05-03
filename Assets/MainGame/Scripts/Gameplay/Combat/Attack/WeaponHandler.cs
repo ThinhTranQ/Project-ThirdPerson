@@ -24,6 +24,7 @@ public class WeaponHandler : MonoBehaviour
      public void DisableVulnerable()
     {
         playerStateMachine.canDeflect = false;
+        
     }
     
     

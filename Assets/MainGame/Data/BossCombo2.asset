@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BossCombo2
   m_EditorClassIdentifier: 
   animator: {fileID: 22100000, guid: ad7bffee31909444b803bbea0afa0d6b, type: 2}
-  attackRange: 0
+  attackRange: 3
   attacks:
   - <AnimationName>k__BackingField: Attack1
     <TransitionDuration>k__BackingField: 0.1
