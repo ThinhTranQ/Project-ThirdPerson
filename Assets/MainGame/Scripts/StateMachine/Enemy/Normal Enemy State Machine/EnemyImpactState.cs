@@ -8,7 +8,7 @@ namespace MainGame.StateMachine
         private readonly int Impact = Animator.StringToHash("Impact");
 
         private const float CrossFadeDuration = .1f;
-        private  float duration = 1f;
+        private  float duration = 0.5f;
         
         public EnemyImpactState(EnemyStateMachine stateMachine) : base(stateMachine)
         {
@@ -23,6 +23,12 @@ namespace MainGame.StateMachine
         public override void UpdateState(float deltaTime)
         {
             Move(deltaTime);
+
+            if (stateMachine.PlayerInput.IsAttacking)
+            {
+                stateMachine.SwitchState(new EnemyBlockState(stateMachine));
+                return;
+            }
             
             duration -= deltaTime;
             if (duration <= 0)

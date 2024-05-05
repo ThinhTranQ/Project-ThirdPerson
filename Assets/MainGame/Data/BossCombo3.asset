@@ -22,5 +22,6 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 70
     <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 20
+    <KnockBack>k__BackingField: 30
     <CantFacePlayer>k__BackingField: 0
+    <CanBeInterrupt>k__BackingField: 0

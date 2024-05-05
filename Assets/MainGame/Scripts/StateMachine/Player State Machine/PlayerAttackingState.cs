@@ -69,6 +69,12 @@ namespace MainGame.StateMachine
 
             if (normalizeTime < attack.CanTransitionCombo) return;
 
+            if (stateMachine.InputReader.IsBlocking)
+            {
+                stateMachine.SwitchState(new PlayerBlockState(stateMachine));
+                return;
+            }
+            
             stateMachine.SwitchState
             (
                 new PlayerAttackingState

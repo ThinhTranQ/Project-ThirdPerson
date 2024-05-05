@@ -7,26 +7,20 @@ namespace MainGame.StateMachine
         private readonly int   Block             = Animator.StringToHash("Block");
         private const    float CrossFadeDuration = .1f;
 
-        private float parryTime = 0.2f;
+       
         public PlayerBlockState(PlayerStateMachine stateMachine) : base(stateMachine)
         {
         }
 
         public override void EnterState()
-        {
-            // stateMachine.Health.SetInvulnerable(true);
+        { 
             stateMachine.Animator.CrossFadeInFixedTime(Block, CrossFadeDuration);
         }
 
         public override void UpdateState(float deltaTime)
         {
             Move(deltaTime);
-
-            // parryTime -= deltaTime;
-            // if (parryTime <= 0)
-            // {
-            //     stateMachine.CanDeflect = true;
-            // }
+            
             
             if (!stateMachine.InputReader.IsBlocking)
             {

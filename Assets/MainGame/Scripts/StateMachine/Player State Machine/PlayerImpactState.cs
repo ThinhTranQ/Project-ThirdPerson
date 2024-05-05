@@ -8,7 +8,7 @@ namespace MainGame.StateMachine
 
         private const float CrossFadeDuration = .1f;
 
-        private float duration = 1f;
+        private float duration = 0.5f;
         
         public PlayerImpactState(PlayerStateMachine stateMachine) : base(stateMachine)
         {

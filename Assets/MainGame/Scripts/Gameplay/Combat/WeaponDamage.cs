@@ -51,6 +51,12 @@ public class WeaponDamage : MonoBehaviour
             Debug.Log("SSS " + other);
             EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
         }
+
+        if (other.TryGetComponent<EnemyStateMachine>(out var enemy))
+        {
+            enemy.BlockDurability.IncreaseBlock(20, isPerfectParry: false);
+        }
+        
     }
 
     public void SetAttackDamage(float damage, float knockback)

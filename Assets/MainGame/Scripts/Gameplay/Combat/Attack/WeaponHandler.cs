@@ -16,14 +16,16 @@ public class WeaponHandler : MonoBehaviour
         weaponLogic.SetActive(false);
     }
 
-    public void EnableVulnerable()
+    public virtual void EnableVulnerable()
     {
+        if (playerStateMachine == null) return;
         print("Turn on Deflect");
         playerStateMachine.CanDeflect = true;
         playerStateMachine.Health.SetInvulnerable(true);
     }
-     public void DisableVulnerable()
+     public virtual void DisableVulnerable()
     {
+        if (playerStateMachine == null) return;
         playerStateMachine.CanDeflect = false;
         
     }

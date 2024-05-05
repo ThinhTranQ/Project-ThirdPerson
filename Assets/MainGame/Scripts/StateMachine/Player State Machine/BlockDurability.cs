@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class BlockDurability : MonoBehaviour
 {
-    private const float BLOCk_MAX = 100;
-
+    public  float BLOCk_MAX = 100;
+    
+    
     public float currentBlock = 0;
 
     public event Action OutOfStamina;
@@ -13,6 +14,7 @@ public class BlockDurability : MonoBehaviour
 
     public float decreaseSpd;
     
+    
     public void IncreaseBlock(float number, bool isPerfectParry)
     {
         currentBlock += number;
@@ -20,6 +22,7 @@ public class BlockDurability : MonoBehaviour
         if (currentBlock >= BLOCk_MAX && !isPerfectParry)
         {
             print("exhausted");
+            currentBlock = 0;
             OutOfStamina?.Invoke();
         }
     }
@@ -37,7 +40,5 @@ public class BlockDurability : MonoBehaviour
         {
             currentBlock = 0;
         }
-
-
     }
 }

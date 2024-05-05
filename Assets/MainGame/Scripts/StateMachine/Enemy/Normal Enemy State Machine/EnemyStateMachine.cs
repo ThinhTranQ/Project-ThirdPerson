@@ -30,17 +30,23 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public bool CanInterrupt        { get; protected set; }
 
     public Health Player { get; private set; }
+    
+    public InputReader PlayerInput { get; private set; }
 
     protected virtual void OnEnable()
     {
-        Health.OnTakeDamage += HandleTakeDamage;
-        Health.OnDie        += HandleDie;
+        Health.OnTakeDamage          += HandleTakeDamage;
+        Health.OnDie                 += HandleDie;
+        BlockDurability.OutOfStamina += HandleExhausted;
     }
+
+   
 
     protected virtual void OnDisable()
     {
-        Health.OnTakeDamage -= HandleTakeDamage;
-        Health.OnDie        -= HandleDie;
+        Health.OnTakeDamage          -= HandleTakeDamage;
+        Health.OnDie                 -= HandleDie;
+        BlockDurability.OutOfStamina -= HandleExhausted;
     }
 
     protected virtual void HandleTakeDamage()
@@ -56,14 +62,24 @@ public class EnemyStateMachine : StateMachine
 
     protected virtual void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
-
+        Player               = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        PlayerInput          = Player.GetComponent<InputReader>();
         Agent.updatePosition = false;
         Agent.updateRotation = false;
 
+        InitStartState();
+    }
+    
+    private void HandleExhausted()
+    {
+       SwitchState(new EnemyExhaustedState(this));
+    }
+    
+    protected virtual void InitStartState()
+    {
         SwitchState(new EnemyIdleState(this));
     }
-
+    
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

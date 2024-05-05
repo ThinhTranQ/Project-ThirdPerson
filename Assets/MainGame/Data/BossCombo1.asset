@@ -22,7 +22,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.1
     <Force>k__BackingField: 10
     <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 2
+    <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 1
   - <AnimationName>k__BackingField: Attack2
@@ -32,7 +32,7 @@ MonoBehaviour:
     <ForceTime>k__BackingField: 0.07
     <Force>k__BackingField: 10
     <Damage>k__BackingField: 0
-    <KnockBack>k__BackingField: 5
+    <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 1
   - <AnimationName>k__BackingField: Attack3

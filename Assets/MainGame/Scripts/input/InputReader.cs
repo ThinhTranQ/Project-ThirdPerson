@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class InputReader : MonoBehaviour, Controls.IPlayerActions
 {
+   
+    
     public Vector2      MovementValue {get;  private set;}
     public bool         IsAttacking   { get; private set; }
     public bool         IsBlocking   { get; private set; }
@@ -13,8 +16,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action DodgeEvent;
     public event Action TargetEvent;
     public event Action CancelEvent;
-
-    public event Action OnParry;
+    
     
     private Controls controls;
     void Start()
