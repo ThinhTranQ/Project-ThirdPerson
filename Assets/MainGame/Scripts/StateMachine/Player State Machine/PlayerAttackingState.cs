@@ -17,7 +17,7 @@ namespace MainGame.StateMachine
 
         public override void EnterState()
         {
-            stateMachine.WeaponDamage.SetAttackDamage(attack.Damage, attack.KnockBack);
+            stateMachine.WeaponDamage.SetAttackDamage(attack.Damage, attack.KnockBack, attack.BlockDamage);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
         }
 

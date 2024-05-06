@@ -16,6 +16,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public override void EnterState()
         {
+            stateMachine.Fainted = false;
             stateMachine.Animator.CrossFadeInFixedTime(Locomotion, CROSS_FADE_DURATION);
         }
 

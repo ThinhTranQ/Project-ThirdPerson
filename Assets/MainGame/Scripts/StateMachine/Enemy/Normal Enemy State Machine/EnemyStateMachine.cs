@@ -17,7 +17,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health              Health              { get; protected set; }
     [field: SerializeField] public Target              Target              { get; protected set; }
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
-    [field: SerializeField] public Collider            Collider            { get; private set; }
+    
     [field: SerializeField] public EnemyCombo          Combo               { get; private set; }
     [field: SerializeField] public Transform          bloodSpawn               { get; private set; }
     
@@ -54,6 +54,7 @@ public class EnemyStateMachine : StateMachine
     {
         if (!CanInterrupt) return;
         if (Fainted) return;
+        print("Enter Impact State");
         SwitchState(new EnemyImpactState(this));
     }
 
@@ -120,7 +121,8 @@ public class EnemyStateMachine : StateMachine
 
     public void TriggerDeadState()
     {
-        Collider.enabled = false;
+        CharacterController.enabled = false;
+        Health.DieByBackStab();
         Destroy(Target);
         GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
         

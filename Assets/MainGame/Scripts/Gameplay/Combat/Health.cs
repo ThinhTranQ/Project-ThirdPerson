@@ -11,6 +11,10 @@ public class Health : MonoBehaviour
 
     [SerializeField]private bool isInvulnerable;
 
+    public float MaxHealth => maxHealth;
+
+    public float CurrentHealth => currentHealth;
+    
     public bool IsDead => currentHealth <= 0;
 
     public event Action OnTakeDamage; 
@@ -28,7 +32,13 @@ public class Health : MonoBehaviour
     {
         this.isInvulnerable = isInvulnerable;
     }
-    public void DealDamage(float damage)
+
+    public void DieByBackStab()
+    {
+        OnDie?.Invoke();
+    }
+    
+    public void TakeDamage(float damage)
     {
         if (currentHealth <= 0)
         {

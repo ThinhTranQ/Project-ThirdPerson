@@ -19,7 +19,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public override void EnterState()
         {
-            stateMachine.Weapon.SetAttackDamage(attack.Damage, attack.KnockBack);
+            stateMachine.Weapon.SetAttackDamage(attack.Damage, attack.KnockBack, attack.BlockDamage);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, TransitionDuration);
             stateMachine.SetInterrupt(attack.CanBeInterrupt);
             cantFacePlayer = attack.CantFacePlayer;

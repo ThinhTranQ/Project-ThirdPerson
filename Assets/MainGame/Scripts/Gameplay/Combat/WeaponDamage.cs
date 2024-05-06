@@ -8,13 +8,13 @@ public class WeaponDamage : MonoBehaviour
     [SerializeField] protected Collider           source;
     private                    List<Collider>     alreadyCollidedWith = new List<Collider>();
     private                    PlayerStateMachine playerStateMachine;
-    protected                  Health             sourceHealth;
+   
     protected                  float              damage;
-    protected                  float              knockback;
+    protected                  float              knockBack;
+    protected                  float              blockDamage;
 
     private void Start()
     {
-        sourceHealth       = GetComponentInParent<Health>();
         playerStateMachine = GetComponentInParent<PlayerStateMachine>();
     }
 
@@ -46,18 +46,19 @@ public class WeaponDamage : MonoBehaviour
                 return;
             }
             
-            enemy.BlockDurability.IncreaseBlock(20, isPerfectParry: false);
+            enemy.BlockDurability.IncreaseBlock(blockDamage, isPerfectParry: false);
         }
         
         if (other.TryGetComponent<Health>(out var health))
         {
-            health.DealDamage(damage);
+            health.TakeDamage(damage);
+            enemy.BlockDurability.IncreaseBlock(blockDamage, isPerfectParry: false);
         }
 
         if (other.TryGetComponent<ForceReceiver>(out var forceReceiver))
         {
             var direction = (other.transform.position - source.transform.position).normalized;
-            forceReceiver.AddForce(direction * knockback);
+            forceReceiver.AddForce(direction * knockBack);
         }
 
         if (other.TryGetComponent<Damagable>(out _))
@@ -70,9 +71,10 @@ public class WeaponDamage : MonoBehaviour
         
     }
 
-    public void SetAttackDamage(float damage, float knockback)
+    public void SetAttackDamage(float damage, float knockBack, float blockDamage)
     {
-        this.damage    = damage;
-        this.knockback = knockback;
+        this.damage      = damage;
+        this.knockBack   = knockBack;
+        this.blockDamage = blockDamage;
     }
 }

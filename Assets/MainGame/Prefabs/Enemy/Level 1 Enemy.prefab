@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 3464596119308802612}
   - component: {fileID: 738959436936136769}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Level 1 Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,11 +182,13 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 2904513414379644528}
   <Ragdoll>k__BackingField: {fileID: 4646302241456209771}
   <Combo>k__BackingField: {fileID: 800387095031757732}
+  <bloodSpawn>k__BackingField: {fileID: 0}
   <BlockDurability>k__BackingField: {fileID: 738959436936136769}
   <PlayerChasingRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 2
   <AttackRange>k__BackingField: 3
   <CanInterrupt>k__BackingField: 0
+  Fainted: 0
 --- !u!143 &3062942829774682981
 CharacterController:
   m_ObjectHideFlags: 0
@@ -259,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4615ce57cda15d44bfad8cd82c19caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 100
   isInvulnerable: 0
 --- !u!114 &8139460967899219619
 MonoBehaviour:
@@ -303,9 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboLists:
-  - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
-  - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
-  - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
+  - {fileID: 11400000, guid: ae9bba71f8942a546a3f05821fba543d, type: 2}
   canChangeCombo: 1
 --- !u!114 &3464596119308802612
 MonoBehaviour:
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfc6356ac744a89963f3de30802dbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BLOCk_MAX: 100
+  BLOCk_MAX: 60
   currentBlock: 0
   delay: 0
   decreaseSpd: 0
@@ -2802,9 +2802,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 354142725687391701}
     m_Modifications:
+    - target: {fileID: 112428, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135536, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140894, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 141740, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
       propertyPath: m_Name
       value: Character_Samurai_Grunt_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 160710, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 181590, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 403398, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4002,6 +4022,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 354142725687391701}
     m_Modifications:
+    - target: {fileID: 1889728016684520542, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_Name
+      value: Health
+      objectReference: {fileID: 0}
     - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
       propertyPath: speed
@@ -4009,9 +4034,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 4179896549285141888}
+    - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
       propertyPath: progress
       value: 
       objectReference: {fileID: 4279331757851128708}
+    - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: healthProgress
+      value: 
+      objectReference: {fileID: 5903864459232531589}
     - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
       propertyPath: blockDurability
@@ -4021,6 +4056,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1156.7312
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 140.30383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 578.3656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 463
       objectReference: {fileID: 0}
     - target: {fileID: 5645814929845713807, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
@@ -4060,7 +4130,17 @@ PrefabInstance:
     - target: {fileID: 5901852745873801821, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: HealthDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243485882991850731, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910972399536843763, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_Name
+      value: Block
       objectReference: {fileID: 0}
     - target: {fileID: 7307784440980973722, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
@@ -4191,6 +4271,12 @@ RectTransform:
 --- !u!224 &4279331757851128708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5645814929845713807, guid: e074b8d6a079d6845929711fc3e0a785,
+    type: 3}
+  m_PrefabInstance: {fileID: 8447287576348280843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5903864459232531589 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
     type: 3}
   m_PrefabInstance: {fileID: 8447287576348280843}
   m_PrefabAsset: {fileID: 0}
