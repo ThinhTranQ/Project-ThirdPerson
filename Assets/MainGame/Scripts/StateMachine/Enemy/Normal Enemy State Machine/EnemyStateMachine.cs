@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using MainGame.Gameplay.Combat;
 using MainGame.StateMachine;
 using MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine;
@@ -19,19 +17,23 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health              Health              { get; protected set; }
     [field: SerializeField] public Target              Target              { get; protected set; }
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
-
-    [field: SerializeField] public EnemyCombo Combo { get; private set; }
+    [field: SerializeField] public Collider            Collider            { get; private set; }
+    [field: SerializeField] public EnemyCombo          Combo               { get; private set; }
+    [field: SerializeField] public Transform          bloodSpawn               { get; private set; }
     
     [field: SerializeField] public BlockDurability BlockDurability { get; private set; }
 
     [field: SerializeField] public float PlayerChasingRange { get; protected set; }
     [field: SerializeField] public float MovementSpeed      { get; protected set; }
     [field: SerializeField] public float AttackRange        { get; protected set; }
-    [field: SerializeField] public bool CanInterrupt        { get; protected set; }
+    [field: SerializeField] public bool  CanInterrupt       { get; protected set; }
 
-    public Health Player { get; private set; }
-    
+    [field: SerializeField] public bool   Fainted;
+    public                         Health Player { get; private set; }
+
     public InputReader PlayerInput { get; private set; }
+
+    private bool isAlreadyBS;
 
     protected virtual void OnEnable()
     {
@@ -40,7 +42,6 @@ public class EnemyStateMachine : StateMachine
         BlockDurability.OutOfStamina += HandleExhausted;
     }
 
-   
 
     protected virtual void OnDisable()
     {
@@ -52,6 +53,7 @@ public class EnemyStateMachine : StateMachine
     protected virtual void HandleTakeDamage()
     {
         if (!CanInterrupt) return;
+        if (Fainted) return;
         SwitchState(new EnemyImpactState(this));
     }
 
@@ -69,17 +71,17 @@ public class EnemyStateMachine : StateMachine
 
         InitStartState();
     }
-    
+
     private void HandleExhausted()
     {
-       SwitchState(new EnemyExhaustedState(this));
+        SwitchState(new EnemyExhaustedState(this));
     }
-    
+
     protected virtual void InitStartState()
     {
         SwitchState(new EnemyIdleState(this));
     }
-    
+
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -96,18 +98,31 @@ public class EnemyStateMachine : StateMachine
     {
         Animator.runtimeAnimatorController = comboList.animator;
         AttackRange                        = comboList.attackRange;
-
     }
 
 
     public void ChangeCombo()
     {
         Combo.ChangeCombo();
-        
     }
 
     public void SetInterrupt(bool canInterrupt)
     {
         CanInterrupt = canInterrupt;
+    }
+
+    public void TriggerBackStab()
+    {
+        if (isAlreadyBS) return;
+        isAlreadyBS = true;
+        SwitchState(new EnemyBackStabbedState(this));
+    }
+
+    public void TriggerDeadState()
+    {
+        Collider.enabled = false;
+        Destroy(Target);
+        GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
+        
     }
 }

@@ -53,4 +53,9 @@ public class PlayerStateMachine : StateMachine
         if (Camera.main != null) MainCamera = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
     }
+
+    public void TriggerBackStabState()
+    {
+        SwitchState(new PlayerBackStabState(this));
+    }
 }

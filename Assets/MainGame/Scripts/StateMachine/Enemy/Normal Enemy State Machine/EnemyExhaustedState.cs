@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EnemyExhaustedState : EnemyBaseState
 {
-    private readonly int   Tired             = Animator.StringToHash("Block");
+    private readonly int   Exhausted             = Animator.StringToHash("Exhausted");
     private const    float CrossFadeDuration = .1f;
 
-    private float tiredTime = 2f;
+    private float tiredTime = 5f;
     
     public EnemyExhaustedState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -14,13 +14,14 @@ public class EnemyExhaustedState : EnemyBaseState
 
     public override void EnterState()
     {
-        // stateMachine.Animator.CrossFadeInFixedTime(Tired, CrossFadeDuration);
+        Debug.Log("Enter Exhausted state");
+        stateMachine.Fainted = true;
+        stateMachine.Animator.CrossFadeInFixedTime(Exhausted, CrossFadeDuration);
     }
 
     public override void UpdateState(float deltaTime)
     {
-       Debug.Log("Tired");
-       tiredTime -= deltaTime;
+        tiredTime -= deltaTime;
        if (tiredTime <= 0)
        {
            stateMachine.SwitchState(new EnemyIdleState(stateMachine));

@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    [SerializeField] protected Collider       source;
-    private                    List<Collider> alreadyCollidedWith = new List<Collider>();
-    protected                  Health         sourceHealth;
-    protected                  float          damage;
-    protected                  float          knockback;
+    [SerializeField] protected Collider           source;
+    private                    List<Collider>     alreadyCollidedWith = new List<Collider>();
+    private                    PlayerStateMachine playerStateMachine;
+    protected                  Health             sourceHealth;
+    protected                  float              damage;
+    protected                  float              knockback;
 
     private void Start()
     {
-        sourceHealth = GetComponentInParent<Health>();
+        sourceHealth       = GetComponentInParent<Health>();
+        playerStateMachine = GetComponentInParent<PlayerStateMachine>();
     }
 
     private void OnEnable()
@@ -35,6 +37,18 @@ public class WeaponDamage : MonoBehaviour
 
     protected virtual void DealDamageToEnemy(Collider other)
     {
+        if (other.TryGetComponent<EnemyStateMachine>(out var enemy))
+        {
+            if (enemy.Fainted)
+            {
+                enemy.TriggerBackStab();
+                playerStateMachine.TriggerBackStabState();
+                return;
+            }
+            
+            enemy.BlockDurability.IncreaseBlock(20, isPerfectParry: false);
+        }
+        
         if (other.TryGetComponent<Health>(out var health))
         {
             health.DealDamage(damage);
@@ -52,10 +66,7 @@ public class WeaponDamage : MonoBehaviour
             EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
         }
 
-        if (other.TryGetComponent<EnemyStateMachine>(out var enemy))
-        {
-            enemy.BlockDurability.IncreaseBlock(20, isPerfectParry: false);
-        }
+       
         
     }
 

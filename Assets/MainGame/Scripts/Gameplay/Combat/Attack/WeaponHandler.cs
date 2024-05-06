@@ -6,6 +6,7 @@ public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] private GameObject         weaponLogic;
     [SerializeField] private PlayerStateMachine playerStateMachine;
+
     public void EnableWeapon()
     {
         weaponLogic.SetActive(true);
@@ -23,12 +24,20 @@ public class WeaponHandler : MonoBehaviour
         playerStateMachine.CanDeflect = true;
         playerStateMachine.Health.SetInvulnerable(true);
     }
-     public virtual void DisableVulnerable()
+
+    public virtual void DisableVulnerable()
     {
         if (playerStateMachine == null) return;
         playerStateMachine.CanDeflect = false;
-        
     }
-    
-    
+
+    public void TriggerBlood()
+    {
+        EffectManager.Instance.SpawnBloodStabParticle(weaponLogic.transform);
+    }
+
+    public void TriggerBlood2()
+    {
+        EffectManager.Instance.SpawnBloodStabParticle(weaponLogic.transform);
+    }
 }
