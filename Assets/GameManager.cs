@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
    public EnemyStateMachine level1;
    public EnemyStateMachine level2;
    public EnemyStateMachine level3;
-   
+
+   public GameObject wall;
 
    private int index;
    
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
       if (!level3.gameObject.activeInHierarchy)
       {
          level3.gameObject.SetActive(true);
+         wall.SetActive(false);
          yield break;
       }
    }

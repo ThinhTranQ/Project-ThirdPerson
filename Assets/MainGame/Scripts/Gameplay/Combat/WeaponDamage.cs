@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MainGame.Services;
 using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
@@ -12,6 +13,8 @@ public class WeaponDamage : MonoBehaviour
     protected                  float              damage;
     protected                  float              knockBack;
     protected                  float              blockDamage;
+
+    protected int index;
 
     private void Start()
     {
@@ -47,6 +50,47 @@ public class WeaponDamage : MonoBehaviour
             }
             
             enemy.BlockDurability.IncreaseBlock(blockDamage, isPerfectParry: false);
+
+            if (enemy.IsBlocking)
+            {
+                index++;
+                if (index > 3)
+                {
+                    index = 1;
+                }
+                switch (index)
+                {
+                    case 1:
+                        AudioService.instance.PlaySfx(SoundFXData.Deflect1);
+                        break; 
+                    case 2:
+                        AudioService.instance.PlaySfx(SoundFXData.Deflect2);
+                        break; 
+                    case 3:
+                        AudioService.instance.PlaySfx(SoundFXData.Deflect3);
+                        break;
+                }
+               
+            }
+            // index++;
+            // if (index > 3)
+            // {
+            //     index = 1;
+            // }
+            // switch (index)
+            // {
+            //     case 1:
+            //         AudioService.instance.PlaySfx(SoundFXData.Deflect1);
+            //         break; 
+            //     case 2:
+            //         AudioService.instance.PlaySfx(SoundFXData.Deflect2);
+            //         break; 
+            //     case 3:
+            //         AudioService.instance.PlaySfx(SoundFXData.Deflect3);
+            //         break;
+            // }
+           
+            
         }
         
         if (other.TryGetComponent<Health>(out var health))
@@ -66,7 +110,8 @@ public class WeaponDamage : MonoBehaviour
             Debug.Log("SSS " + other);
             EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
         }
-
+        
+        
        
         
     }

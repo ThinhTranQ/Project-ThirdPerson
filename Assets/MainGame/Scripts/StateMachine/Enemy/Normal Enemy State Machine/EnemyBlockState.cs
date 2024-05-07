@@ -6,7 +6,7 @@ public class EnemyBlockState : EnemyBaseState
     private readonly int   Block             = Animator.StringToHash("Block");
     private const    float CrossFadeDuration = .1f;
 
-    private float blockTime = 0.5f;
+    private float blockTime = 1f;
     
     public EnemyBlockState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -18,6 +18,7 @@ public class EnemyBlockState : EnemyBaseState
         Debug.Log("Enter Block State");
         stateMachine.Animator.CrossFadeInFixedTime(Block, CrossFadeDuration);
         stateMachine.Health.SetInvulnerable(true);
+        stateMachine.TriggerBlock(true);
     }
 
     public override void UpdateState(float deltaTime)
@@ -26,7 +27,7 @@ public class EnemyBlockState : EnemyBaseState
 
         if (stateMachine.PlayerInput.IsAttacking)
         {
-            blockTime = 0.5f;
+            blockTime = 1f;
         }
 
         blockTime -= deltaTime;
@@ -40,5 +41,6 @@ public class EnemyBlockState : EnemyBaseState
     public override void ExitState()
     {
         stateMachine.Health.SetInvulnerable(false);
+        stateMachine.TriggerBlock(false);
     }
 }

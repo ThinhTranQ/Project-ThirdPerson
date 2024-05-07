@@ -23,20 +23,24 @@ public class EnemyStateMachine : StateMachine
     
     [field: SerializeField] public BlockDurability BlockDurability { get; private set; }
 
+    public                         Health Player { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; protected set; }
     [field: SerializeField] public float MovementSpeed      { get; protected set; }
     [field: SerializeField] public float AttackRange        { get; protected set; }
     [field: SerializeField] public bool  CanInterrupt       { get; protected set; }
+    
+    [field: SerializeField] public bool IsBlocking { get; private set; }
 
     [field: SerializeField] public bool   Fainted;
-    public                         Health Player { get; private set; }
 
+    public bool        cannotTransit;
     public InputReader PlayerInput { get; private set; }
 
     private bool isAlreadyBS;
 
     protected virtual void OnEnable()
     {
+        if (cannotTransit) return;
         Health.OnTakeDamage          += HandleTakeDamage;
         Health.OnDie                 += HandleDie;
         BlockDurability.OutOfStamina += HandleExhausted;
@@ -80,6 +84,7 @@ public class EnemyStateMachine : StateMachine
 
     protected virtual void InitStartState()
     {
+        if (cannotTransit) return;
         SwitchState(new EnemyIdleState(this));
     }
 
@@ -126,5 +131,10 @@ public class EnemyStateMachine : StateMachine
         Destroy(Target);
         GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
         
+    }
+
+    public void TriggerBlock(bool isBlock)
+    {
+        IsBlocking = isBlock;
     }
 }

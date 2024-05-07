@@ -24,7 +24,7 @@ MonoBehaviour:
     <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
-    <CanBeInterrupt>k__BackingField: 0
+    <CanBeInterrupt>k__BackingField: 1
     <BlockDamage>k__BackingField: 0
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
@@ -35,7 +35,7 @@ MonoBehaviour:
     <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
-    <CanBeInterrupt>k__BackingField: 0
+    <CanBeInterrupt>k__BackingField: 1
     <BlockDamage>k__BackingField: 0
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.1
@@ -46,5 +46,5 @@ MonoBehaviour:
     <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
-    <CanBeInterrupt>k__BackingField: 0
+    <CanBeInterrupt>k__BackingField: 1
     <BlockDamage>k__BackingField: 0

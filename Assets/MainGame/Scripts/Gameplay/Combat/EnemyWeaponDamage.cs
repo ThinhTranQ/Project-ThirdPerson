@@ -1,4 +1,5 @@
 ﻿using System;
+using MainGame.Services;
 using UnityEngine;
 
 namespace MainGame.Gameplay.Combat
@@ -6,7 +7,7 @@ namespace MainGame.Gameplay.Combat
     public class EnemyWeaponDamage : WeaponDamage
     {
         private EnemyStateMachine enemyStateMachine;
-
+       
         private void Awake()
         {
             enemyStateMachine = GetComponentInParent<EnemyStateMachine>();
@@ -22,27 +23,48 @@ namespace MainGame.Gameplay.Combat
                     var direction = (other.transform.position - source.transform.position).normalized;
                     forceReceiver.AddForce(direction * knockBack);
                 }
-                
+
                 if (other.TryGetComponent<PlayerStateMachine>(out var playerStateMachine))
                 {
                     if (playerStateMachine.CanDeflect)
                     {
                         EffectManager.Instance.SpawnPerfectParry(other.ClosestPoint(transform.position));
-                        playerStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry:true);
-                        enemyStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry:false);
+                        enemyStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry: false);
                         gameObject.SetActive(false);
-                        return;
                     }
-                    playerStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry: false);
+                    else
+                    {
+                        playerStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry: false);
+                    }
+                    if (playerStateMachine.IsBlocking)
+                    {
+                        index++;
+                        if (index > 3)
+                        {
+                            index = 1;
+                        }
+                        switch (index)
+                        {
+                            case 1:
+                                AudioService.instance.PlaySfx(SoundFXData.Deflect1);
+                                break; 
+                            case 2:
+                                AudioService.instance.PlaySfx(SoundFXData.Deflect2);
+                                break; 
+                            case 3:
+                                AudioService.instance.PlaySfx(SoundFXData.Deflect3);
+                                break;
+                        }
+               
+                    }
+                   
                 }
-                
+
                 EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
                 if (other.TryGetComponent<Health>(out var health))
                 {
                     health.TakeDamage(damage);
                 }
-
-                
             }
         }
     }

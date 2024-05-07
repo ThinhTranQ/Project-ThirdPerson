@@ -23,6 +23,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float               DodgeDuration          { get; private set; }
     [field: SerializeField] public float               DodgeDistance          { get; private set; }
     [field: SerializeField] public bool                CanDeflect             { get; set; }
+    [field: SerializeField] public bool                IsBlocking             { get; set; }
 
     public Transform MainCamera { get; private set; }
 
@@ -57,5 +58,10 @@ public class PlayerStateMachine : StateMachine
     public void TriggerBackStabState()
     {
         SwitchState(new PlayerBackStabState(this));
+    }
+
+    public void TriggerBlock(bool isOn)
+    {
+        IsBlocking = isOn;
     }
 }

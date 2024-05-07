@@ -61,6 +61,7 @@ namespace MainGame.StateMachine
 
         public override void ExitState()
         {
+            stateMachine.WeaponHandler.DisableWeapon();
         }
 
         private void TryComboAttack(float normalizeTime)

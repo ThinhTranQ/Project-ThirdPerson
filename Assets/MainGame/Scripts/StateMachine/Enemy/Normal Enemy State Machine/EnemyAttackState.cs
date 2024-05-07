@@ -55,6 +55,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
         public override void ExitState()
         {
+            stateMachine.WeaponHandler.DisableWeapon();
         }
 
         private void TryComboAttack(float normalizeTime)

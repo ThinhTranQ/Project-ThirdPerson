@@ -15,6 +15,7 @@ namespace MainGame.StateMachine
         public override void EnterState()
         { 
             stateMachine.Animator.CrossFadeInFixedTime(Block, CrossFadeDuration);
+            stateMachine.TriggerBlock(true);
         }
 
         public override void UpdateState(float deltaTime)
@@ -39,6 +40,7 @@ namespace MainGame.StateMachine
         public override void ExitState()
         {
             stateMachine.Health.SetInvulnerable(false);
+            stateMachine.TriggerBlock(false);
         }
     }
 }

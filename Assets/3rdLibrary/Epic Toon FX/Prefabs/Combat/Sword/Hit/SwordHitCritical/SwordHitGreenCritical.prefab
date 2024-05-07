@@ -9705,6 +9705,7 @@ GameObject:
   - component: {fileID: 419624}
   - component: {fileID: 19871654}
   - component: {fileID: 19914082}
+  - component: {fileID: 3021661760494998774}
   m_Layer: 0
   m_Name: SwordHitGreenCritical
   m_TagString: Untagged
@@ -14545,6 +14546,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3021661760494998774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c5428bc7e8fa34c8020ac2e586c88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152954
 GameObject:
   m_ObjectHideFlags: 0

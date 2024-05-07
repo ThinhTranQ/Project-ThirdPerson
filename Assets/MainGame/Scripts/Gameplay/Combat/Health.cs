@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
 
-    private float currentHealth;
+    [SerializeField] private float currentHealth;
 
     [SerializeField]private bool isInvulnerable;
 

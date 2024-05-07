@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2820537104798292138
 Transform:
   m_ObjectHideFlags: 0
@@ -72,7 +72,9 @@ MonoBehaviour:
   <MovementSpeed>k__BackingField: 6
   <AttackRange>k__BackingField: 3
   <CanInterrupt>k__BackingField: 0
+  <IsBlocking>k__BackingField: 0
   Fainted: 0
+  cannotTransit: 0
 --- !u!143 &7084121895137088895
 CharacterController:
   m_ObjectHideFlags: 0
@@ -191,7 +193,7 @@ MonoBehaviour:
   comboLists:
   - {fileID: 11400000, guid: f46b434641ba3514d95b0cb3381951ca, type: 2}
   - {fileID: 11400000, guid: e6c15fe9fc556674aadada15ce15cac6, type: 2}
-  canChangeCombo: 0
+  canChangeCombo: 1
 --- !u!114 &208603943173936374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfc6356ac744a89963f3de30802dbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BLOCk_MAX: 120
+  BLOCk_MAX: 600
   currentBlock: 0
   delay: 0
   decreaseSpd: 1
