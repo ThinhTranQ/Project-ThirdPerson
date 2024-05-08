@@ -16,6 +16,7 @@
     "com.unity.timeline": "1.7.6",
     "com.unity.toonshader": "0.8.5-preview",
     "com.unity.ugui": "1.0.0",
+    "com.unity.visualeffectgraph": "14.0.9",
     "com.unity.visualscripting": "1.9.1",
     "com.yasirkula.ingamedebugconsole": "https://github.com/yasirkula/UnityIngameDebugConsole.git",
     "net.wraithavengames.unityinterfacesupport": "https://github.com/TheDudeFromCI/Unity-Interface-Support.git?path=/Packages/net.wraithavengames.unityinterfacesupport",

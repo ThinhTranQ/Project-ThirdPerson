@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d4d6b646a84d9696772c4eaffc22cc, type: 3}
   m_Name: BossCombo3
   m_EditorClassIdentifier: 
-  animator: {fileID: 22100000, guid: ef3f3c30292105949b820a2abd97f24c, type: 2}
+  animator: {fileID: 22100000, guid: 1cfbfe0a012357e4eb92f3b29da2a3bd, type: 2}
   attackRange: 5
   attacks:
   - <AnimationName>k__BackingField: Attack1
@@ -25,3 +25,5 @@ MonoBehaviour:
     <KnockBack>k__BackingField: 30
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
+    <BlockDamage>k__BackingField: 0
+    <AnimSpeed>k__BackingField: 0.7

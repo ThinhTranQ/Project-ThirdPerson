@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d4d6b646a84d9696772c4eaffc22cc, type: 3}
   m_Name: BossCombo1
   m_EditorClassIdentifier: 
-  animator: {fileID: 22100000, guid: 656c5a3379f49a94fb96a6630a58f170, type: 2}
+  animator: {fileID: 22100000, guid: f9a37e86fa3ec5e4dbf1724e5fe7d4fa, type: 2}
   attackRange: 2.5
   attacks:
   - <AnimationName>k__BackingField: Attack1
@@ -25,6 +25,8 @@ MonoBehaviour:
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 1
+    <BlockDamage>k__BackingField: 0
+    <AnimSpeed>k__BackingField: 0.8
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
@@ -35,6 +37,8 @@ MonoBehaviour:
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 1
+    <BlockDamage>k__BackingField: 0
+    <AnimSpeed>k__BackingField: 1
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: -1
@@ -45,3 +49,5 @@ MonoBehaviour:
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
+    <BlockDamage>k__BackingField: 0
+    <AnimSpeed>k__BackingField: 0.8

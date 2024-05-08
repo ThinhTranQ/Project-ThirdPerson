@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100000
+  currentHealth: 0
   isInvulnerable: 0
 --- !u!114 &177821838148038994
 MonoBehaviour:
@@ -191,10 +192,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboLists:
+  - {fileID: 11400000, guid: c65abd414efb3944aa28c6c422a594ba, type: 2}
   - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
   - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
   - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
-  canChangeCombo: 1
+  canChangeCombo: 0
 --- !u!114 &2459134900875157303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3831,7 +3833,7 @@ PrefabInstance:
     - target: {fileID: 9592700, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: ad7bffee31909444b803bbea0afa0d6b,
+      objectReference: {fileID: 22100000, guid: d828cbcea14fb74458a2eeab0300640b,
         type: 2}
     - target: {fileID: 9592700, guid: 53f27aab0f2572a499cc7b38e5e092a7, type: 3}
       propertyPath: m_ApplyRootMotion

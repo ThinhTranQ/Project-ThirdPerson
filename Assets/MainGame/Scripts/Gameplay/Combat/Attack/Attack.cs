@@ -11,9 +11,11 @@ public class Attack
     [field: SerializeField] public float  CanTransitionCombo { get; private set; }
     [field: SerializeField] public float  ForceTime          { get; private set; }
     [field: SerializeField] public float  Force              { get; private set; }
-    [field: SerializeField] public float  Damage             { get; private set; }
+    // [field: SerializeField] public float  Damage             { get; private set; }
     [field: SerializeField] public float  KnockBack          { get; private set; }
     [field: SerializeField] public bool   CantFacePlayer     { get; private set; }
     [field: SerializeField] public bool   CanBeInterrupt     { get; private set; }
     [field: SerializeField] public float  BlockDamage          { get; private set; }
+    [field: SerializeField] public float  AnimSpeed          { get; private set; }
+    [field: SerializeField] public float  Phase2Speed          { get; private set; }
 }

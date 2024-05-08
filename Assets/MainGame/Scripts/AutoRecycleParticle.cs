@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class AutoRecycleParticle : MonoBehaviour
 {
-   private ParticleSystem particleSystem;
+   private ParticleSystem particle;
 
    private void Awake()
    {
-      particleSystem = GetComponent<ParticleSystem>();
+      particle = GetComponent<ParticleSystem>();
    }
 
    private void OnEnable()
    {
-      particleSystem.Play();
+      particle.Play();
    }
 
    private void Update()
    {
-      if (!particleSystem.isPlaying)
+      if (!particle.isPlaying)
       {
          gameObject.Recycle();
       }
