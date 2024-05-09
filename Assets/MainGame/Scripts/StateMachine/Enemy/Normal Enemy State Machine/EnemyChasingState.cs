@@ -60,6 +60,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
                 Move(stateMachine.Agent.desiredVelocity.normalized * stateMachine.MovementSpeed, deltaTime);
 
             }
+            
          
             // update agent movement = character controller movement
             stateMachine.Agent.velocity = stateMachine.CharacterController.velocity;
