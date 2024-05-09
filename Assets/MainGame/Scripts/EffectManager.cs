@@ -11,6 +11,9 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
 
     public GameObject bloodStabParticle;
 
+    public GameObject reviveParticle;
+
+    public GameObject buffParticle;
     protected override void Initial()
     {
         base.Initial();
@@ -32,9 +35,14 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
         var eff = bloodStabParticle.Spawn(spawn.position, spawn.localRotation);
     }
 
-    public void SpawnBloodStabParticle(Transform spawn, Quaternion rotation)
+    public void SpawnReviveParticle(Transform spawn)
     {
-        var eff = bloodStabParticle.Spawn(spawn.position, rotation);
+        var eff = reviveParticle.Spawn(spawn.position, Quaternion.identity);
+    }
+
+    public void SpawnBuffParticle(Transform spawn)
+    {
+        var eff = buffParticle.Spawn(spawn.position, Quaternion.identity);
     }
 }
 
@@ -44,11 +52,10 @@ public interface IEffectManager
 
     public void SpawnPerfectParry(Vector3 position);
 
-    public void SpawnBloodStabParticle(Transform spawn)
-    {
-    }
+    public void SpawnBloodStabParticle(Transform spawn);
 
-    public void SpawnBloodStabParticle(Transform spawn, Quaternion rotation)
-    {
-    }
+    public void SpawnReviveParticle(Transform spawn);
+
+    public void SpawnBuffParticle(Transform spawn);
+
 }

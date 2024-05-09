@@ -13,8 +13,13 @@ public class BlockDurability : MonoBehaviour
     public float delay;
 
     public float decreaseSpd;
-    
-    
+
+    public float numberOfBlockBar;
+
+    public void DecreaseBlockBar()
+    {
+        numberOfBlockBar -= 0;
+    }
     public void IncreaseBlock(float number, bool isPerfectParry)
     {
         currentBlock += number;

@@ -1,4 +1,5 @@
-
+using System.Collections;
+using Cysharp.Threading.Tasks;
 using MainGame.Gameplay.Combat;
 using MainGame.StateMachine;
 using MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine;
@@ -17,21 +18,21 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health              Health              { get; protected set; }
     [field: SerializeField] public Target              Target              { get; protected set; }
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
-    
-    [field: SerializeField] public EnemyCombo          Combo               { get; private set; }
-    [field: SerializeField] public Transform          bloodSpawn               { get; private set; }
-    
+
+    [field: SerializeField] public EnemyCombo Combo      { get; private set; }
+    [field: SerializeField] public Transform  bloodSpawn { get; private set; }
+
     [field: SerializeField] public BlockDurability BlockDurability { get; private set; }
 
-    public                         Health Player { get; private set; }
-    [field: SerializeField] public float PlayerChasingRange { get; protected set; }
-    [field: SerializeField] public float MovementSpeed      { get; protected set; }
-    [field: SerializeField] public float AttackRange        { get; protected set; }
-    [field: SerializeField] public bool  CanInterrupt       { get; protected set; }
-    
+    public                         Health Player             { get; private set; }
+    [field: SerializeField] public float  PlayerChasingRange { get; protected set; }
+    [field: SerializeField] public float  MovementSpeed      { get; protected set; }
+    [field: SerializeField] public float  AttackRange        { get; protected set; }
+    [field: SerializeField] public bool   CanInterrupt       { get; protected set; }
+
     [field: SerializeField] public bool IsBlocking { get; private set; }
 
-    [field: SerializeField] public bool   Fainted;
+    [field: SerializeField] public bool Fainted;
 
     public bool        cannotTransit;
     public InputReader PlayerInput { get; private set; }
@@ -126,11 +127,44 @@ public class EnemyStateMachine : StateMachine
 
     public void TriggerDeadState()
     {
+        OnDeathExecution();
+        // StartCoroutine(DelayDeath());
+
+    }
+
+    public  void Revive()
+    {
+        BlockDurability.DecreaseBlockBar();
+        StartCoroutine(DelayRevive());
+
+    }
+
+    private void OnDeathExecution()
+    {
+        if (BlockDurability.numberOfBlockBar >= 1)
+        {
+            Revive();
+            return;
+        }
+
         CharacterController.enabled = false;
         Health.DieByBackStab();
         Destroy(Target);
         GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
+    }
+    
+    IEnumerator DelayDeath()
+    {
+        yield return new WaitForSeconds(1);
+      
+    }
+    
+    IEnumerator DelayRevive()
+    {
+        EffectManager.Instance.SpawnReviveParticle(transform);
+        yield return new WaitForSeconds(3);
         
+        SwitchState(new EnemyReviveState(this));
     }
 
     public void TriggerBlock(bool isBlock)

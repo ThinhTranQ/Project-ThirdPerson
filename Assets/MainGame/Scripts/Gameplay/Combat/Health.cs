@@ -10,7 +10,9 @@ public class Health : MonoBehaviour
     [SerializeField] private float currentHealth;
 
     [SerializeField]private bool isInvulnerable;
-
+    
+    
+    
     public float MaxHealth => maxHealth;
 
     public float CurrentHealth => currentHealth;
