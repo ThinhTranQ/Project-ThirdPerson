@@ -9,7 +9,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private PlayerStateMachine playerStateMachine;
     private                  int                index;
 
-    public void EnableWeapon()
+    public virtual void EnableWeapon()
     {
         weaponLogic.SetActive(true);
         index++;

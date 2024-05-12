@@ -1,17 +1,17 @@
 ﻿using MainGame.StateMachine;
 using UnityEngine;
 
-public class PlayerBackStabState : PlayerBaseState
+public class PlayerDoBackStabState : PlayerBaseState
 {
-    private readonly int   BackStab          = Animator.StringToHash("BackStab");
+    private readonly int   BackStab          = Animator.StringToHash("DoStab");
     private const    float CrossFadeDuration = .1f;
-    public PlayerBackStabState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerDoBackStabState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
     public override void EnterState()
     {
-        Debug.Log("Enter BackStab ");
+        Debug.Log("Enter GetStab ");
         stateMachine.Animator.CrossFadeInFixedTime(BackStab, CrossFadeDuration);
         
     }

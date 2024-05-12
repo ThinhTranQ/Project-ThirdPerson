@@ -4,46 +4,76 @@ using UnityEngine;
 
 public class EnemyCombo : MonoBehaviour
 {
-     public List<ComboList> comboLists;
+    public List<ComboList> comboLists;
 
-     private EnemyStateMachine enemy;
-     private ComboList         currentCombo;
+    public List<ComboList> phase2Combo;
 
-     private int  currentIndex;
-     public  bool canChangeCombo;
-     
-     private void Start()
-     {
-          enemy = GetComponent<EnemyStateMachine>();
-          // for testing
-          ImplementCombo();
-     }
+    private EnemyStateMachine enemy;
+    private ComboList         currentCombo;
 
-     private void ImplementCombo()
-     {
-          currentCombo = comboLists[currentIndex];
-          currentCombo.ImplementCombo(enemy);
-     }
-     
-     public Attack GetCurrentAttack(int index)
-     {
-          return currentCombo.attacks[index];
-     }
+    private int  currentIndex;
+    public  bool canChangeCombo;
 
-     public void ChangeCombo()
-     {
-          currentIndex++;
-          if (currentIndex >= comboLists.Count)
-          {
-               currentIndex = 0;
-          }
+    private bool isPhase2;
 
-          if (!canChangeCombo)
-          {
-               currentIndex = 0;
-          }
-          
-          ImplementCombo();
+    private void Start()
+    {
+        enemy = GetComponent<EnemyStateMachine>();
+        // for testing
+        ImplementCombo();
+    }
 
-     }
+    public void ChangePhaseCombo()
+    {
+        isPhase2     = true;
+        ChangeCombo();
+        currentIndex = 0;
+    }
+
+    private void ImplementCombo()
+    {
+        if (isPhase2)
+        {
+            currentCombo = phase2Combo[currentIndex];
+        }
+        else
+        {
+            currentCombo = comboLists[currentIndex];
+        }
+
+        currentCombo.ImplementCombo(enemy);
+    }
+
+    public Attack GetCurrentAttack(int index)
+    {
+        return currentCombo.attacks[index];
+    }
+
+    public void ChangeCombo()
+    {
+        currentIndex++;
+        if (isPhase2)
+        {
+            if (currentIndex >= phase2Combo.Count)
+            {
+                currentIndex = 0;
+            }
+        }
+        else
+        {
+            if (currentIndex >= comboLists.Count)
+            {
+                currentIndex = 0;
+            }
+        }
+      
+        
+
+        if (!canChangeCombo)
+        {
+            currentIndex = 0;
+        }
+
+        ImplementCombo();
+    }
 }

@@ -15,16 +15,24 @@ namespace MainGame.Gameplay.Combat
 
         protected override void DealDamageToEnemy(Collider other)
         {
-            print(other);
             if (other.TryGetComponent<Damagable>(out _))
             {
+                var isPlayer = other.TryGetComponent<PlayerStateMachine>(out var playerStateMachine);
+
+                if (playerStateMachine.Fainted)
+                {
+                    playerStateMachine.TriggerBackStabState();
+                    enemyStateMachine.TriggerDoBackStab();
+                    return;
+                }
+                
                 if (other.TryGetComponent<ForceReceiver>(out var forceReceiver))
                 {
                     var direction = (other.transform.position - source.transform.position).normalized;
                     forceReceiver.AddForce(direction * knockBack);
                 }
 
-                if (other.TryGetComponent<PlayerStateMachine>(out var playerStateMachine))
+                if (isPlayer)
                 {
                     if (playerStateMachine.CanDeflect)
                     {

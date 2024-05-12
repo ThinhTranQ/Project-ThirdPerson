@@ -45,7 +45,7 @@ public class WeaponDamage : MonoBehaviour
             if (enemy.Fainted)
             {
                 enemy.TriggerBackStab();
-                playerStateMachine.TriggerBackStabState();
+                playerStateMachine.TriggerDoBackStabState();
                 return;
             }
             
@@ -72,25 +72,6 @@ public class WeaponDamage : MonoBehaviour
                 }
                
             }
-            // index++;
-            // if (index > 3)
-            // {
-            //     index = 1;
-            // }
-            // switch (index)
-            // {
-            //     case 1:
-            //         AudioService.instance.PlaySfx(SoundFXData.Deflect1);
-            //         break; 
-            //     case 2:
-            //         AudioService.instance.PlaySfx(SoundFXData.Deflect2);
-            //         break; 
-            //     case 3:
-            //         AudioService.instance.PlaySfx(SoundFXData.Deflect3);
-            //         break;
-            // }
-           
-            
         }
         
         if (other.TryGetComponent<Health>(out var health))

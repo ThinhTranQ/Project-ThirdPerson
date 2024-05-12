@@ -1,60 +1,82 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MainGame.Services;
+using MainGame.Utils;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class GroundSlash : MonoBehaviour
 {
-    public float speed = 30;
-    public float slowDownRate = 0.01f;
-    public float detectingDistance = 0.1f;
-    public float destroyDelay = 5;
-
+    public  float     speed        = 30;
+    public  float     slowDownRate = 0.01f;
     private Rigidbody rb;
-    private bool stopped;
+    public  float     timedelay = 5;
 
-    void Start()
+    private int index;
+
+    private void Update()
     {
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-
-        if (GetComponent<Rigidbody>() != null)
+        timedelay -= Time.deltaTime;
+        if (timedelay <= 0)
         {
-            rb = GetComponent<Rigidbody>();
-            StartCoroutine(SlowDown());
+            transform.Recycle();
+            return;
         }
-        else
-            Debug.Log("No Rigidbody");
 
-        Destroy(gameObject, destroyDelay);
+        transform.position += transform.forward * (Time.deltaTime * speed);
     }
 
-    private void FixedUpdate()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!stopped)
+        if (other.CompareTag("Player"))
         {
-            RaycastHit hit;
-            Vector3 distance = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-            if (Physics.Raycast(distance, transform.TransformDirection(-Vector3.up), out hit, detectingDistance))
+            if (other.TryGetComponent<ForceReceiver>(out var forceReceiver))
             {
-                transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+                var direction = (other.transform.position - transform.position).normalized;
+                forceReceiver.AddForce(direction * 30);
             }
-            else
+
+            if (other.TryGetComponent<PlayerStateMachine>(out var playerStateMachine))
             {
-                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                if (playerStateMachine.CanDeflect)
+                {
+                    EffectManager.Instance.SpawnPerfectParry(other.ClosestPoint(transform.position));
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    playerStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry: false);
+                }
+
+                if (playerStateMachine.IsBlocking)
+                {
+                    index++;
+                    if (index > 3)
+                    {
+                        index = 1;
+                    }
+
+                    switch (index)
+                    {
+                        case 1:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect1);
+                            break;
+                        case 2:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect2);
+                            break;
+                        case 3:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect3);
+                            break;
+                    }
+                }
             }
-            Debug.DrawRay(distance, transform.TransformDirection(-Vector3.up * detectingDistance), Color.red);
-        }
-    }
 
-    IEnumerator SlowDown ()
-    {
-        float t = 1;
-        while (t > 0)
-        {
-            rb.velocity = Vector3.Lerp(Vector3.zero, rb.velocity, t);
-            t -= slowDownRate;
-            yield return new WaitForSeconds(0.1f);
+            EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
+            if (other.TryGetComponent<Health>(out var health))
+            {
+                health.TakeDamage(0);
+            }
         }
-
-        stopped = true;
     }
 }

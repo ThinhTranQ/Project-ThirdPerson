@@ -34,6 +34,8 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public bool Fainted;
 
+    public bool IsPhase2 { get; private set; }
+
     public bool        cannotTransit;
     public InputReader PlayerInput { get; private set; }
 
@@ -125,6 +127,11 @@ public class EnemyStateMachine : StateMachine
         SwitchState(new EnemyBackStabbedState(this));
     }
 
+    public void TriggerDoBackStab()
+    {
+        SwitchState(new EnemyDoingStabState(this));
+    }
+
     public void TriggerDeadState()
     {
         OnDeathExecution();
@@ -134,7 +141,10 @@ public class EnemyStateMachine : StateMachine
 
     public  void Revive()
     {
+        IsPhase2    = true;
+        isAlreadyBS = false;
         BlockDurability.DecreaseBlockBar();
+        Combo.ChangePhaseCombo();
         StartCoroutine(DelayRevive());
 
     }
@@ -152,12 +162,7 @@ public class EnemyStateMachine : StateMachine
         Destroy(Target);
         GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
     }
-    
-    IEnumerator DelayDeath()
-    {
-        yield return new WaitForSeconds(1);
-      
-    }
+  
     
     IEnumerator DelayRevive()
     {

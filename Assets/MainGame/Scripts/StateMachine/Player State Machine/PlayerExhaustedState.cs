@@ -1,14 +1,13 @@
-﻿using MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine;
+﻿using MainGame.StateMachine;
 using UnityEngine;
 
-public class EnemyExhaustedState : EnemyBaseState
+public class PlayerExhaustedState : PlayerBaseState
 {
     private readonly int   Exhausted         = Animator.StringToHash("Exhausted");
     private const    float CrossFadeDuration = .1f;
 
     private float tiredTime = 5f;
-
-    public EnemyExhaustedState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public PlayerExhaustedState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
 
@@ -24,7 +23,7 @@ public class EnemyExhaustedState : EnemyBaseState
         tiredTime -= deltaTime;
         if (tiredTime <= 0)
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
         }
     }
 

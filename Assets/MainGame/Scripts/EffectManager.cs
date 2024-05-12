@@ -14,6 +14,8 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
     public GameObject reviveParticle;
 
     public GameObject buffParticle;
+
+    public GameObject slashParticle;
     protected override void Initial()
     {
         base.Initial();
@@ -44,6 +46,11 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
     {
         var eff = buffParticle.Spawn(spawn.position, Quaternion.identity);
     }
+
+    public void SpawnSlashEff(Transform spawn)
+    {
+        var eff = slashParticle.Spawn(spawn.position, spawn.rotation);
+    }
 }
 
 public interface IEffectManager
@@ -57,5 +64,7 @@ public interface IEffectManager
     public void SpawnReviveParticle(Transform spawn);
 
     public void SpawnBuffParticle(Transform spawn);
+
+    public void SpawnSlashEff(Transform spawn);
 
 }

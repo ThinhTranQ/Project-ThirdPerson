@@ -18,7 +18,7 @@ public class BlockDurability : MonoBehaviour
 
     public void DecreaseBlockBar()
     {
-        numberOfBlockBar -= 0;
+        numberOfBlockBar -= 1;
     }
     public void IncreaseBlock(float number, bool isPerfectParry)
     {
