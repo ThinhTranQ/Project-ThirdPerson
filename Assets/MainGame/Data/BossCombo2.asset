@@ -21,33 +21,36 @@ MonoBehaviour:
     <CanTransitionCombo>k__BackingField: 0.8
     <ForceTime>k__BackingField: 0.4
     <Force>k__BackingField: 25
-    <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 1
     <BlockDamage>k__BackingField: 0
     <AnimSpeed>k__BackingField: 0.8
+    <Phase2Speed>k__BackingField: 1.2
+    <CanFireProjectile>k__BackingField: 0
   - <AnimationName>k__BackingField: Attack2
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: 2
     <CanTransitionCombo>k__BackingField: 0.8
     <ForceTime>k__BackingField: 0.3
     <Force>k__BackingField: 10
-    <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
     <BlockDamage>k__BackingField: 0
     <AnimSpeed>k__BackingField: 0.8
+    <Phase2Speed>k__BackingField: 1.2
+    <CanFireProjectile>k__BackingField: 0
   - <AnimationName>k__BackingField: Attack3
     <TransitionDuration>k__BackingField: 0.1
     <ComboStateIndex>k__BackingField: -1
     <CanTransitionCombo>k__BackingField: 0.9
     <ForceTime>k__BackingField: 0.23
     <Force>k__BackingField: 20
-    <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 10
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
     <BlockDamage>k__BackingField: 0
     <AnimSpeed>k__BackingField: 0.8
+    <Phase2Speed>k__BackingField: 1.2
+    <CanFireProjectile>k__BackingField: 0

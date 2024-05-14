@@ -34,6 +34,8 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public bool Fainted;
 
+    public bool canFireProjectile;
+
     public bool IsPhase2 { get; private set; }
 
     public bool        cannotTransit;
@@ -55,6 +57,13 @@ public class EnemyStateMachine : StateMachine
         Health.OnTakeDamage          -= HandleTakeDamage;
         Health.OnDie                 -= HandleDie;
         BlockDurability.OutOfStamina -= HandleExhausted;
+    }
+
+    public Attack GetCurrentAttack(int index)
+    {
+        var attack = Combo.GetCurrentAttack(index);
+        canFireProjectile = attack.CanFireProjectile;
+        return attack;
     }
 
     protected virtual void HandleTakeDamage()

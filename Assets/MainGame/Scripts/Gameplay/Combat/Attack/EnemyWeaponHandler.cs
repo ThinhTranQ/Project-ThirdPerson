@@ -12,7 +12,7 @@ public class EnemyWeaponHandler : WeaponHandler
      public override void EnableWeapon()
      {
           base.EnableWeapon();
-          if (enemyStateMachine.IsPhase2)
+          if (enemyStateMachine.canFireProjectile)
           {
                EffectManager.Instance.SpawnSlashEff(transform);
           }

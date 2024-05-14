@@ -21,9 +21,10 @@ MonoBehaviour:
     <CanTransitionCombo>k__BackingField: 0.8
     <ForceTime>k__BackingField: 0.35
     <Force>k__BackingField: 70
-    <Damage>k__BackingField: 0
     <KnockBack>k__BackingField: 30
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
     <BlockDamage>k__BackingField: 0
     <AnimSpeed>k__BackingField: 0.7
+    <Phase2Speed>k__BackingField: 1
+    <CanFireProjectile>k__BackingField: 0

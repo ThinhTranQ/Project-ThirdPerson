@@ -26,8 +26,9 @@ public class EnemyCombo : MonoBehaviour
     public void ChangePhaseCombo()
     {
         isPhase2     = true;
-        ChangeCombo();
+        // ChangeCombo();
         currentIndex = 0;
+        ImplementCombo();
     }
 
     private void ImplementCombo()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using MainGame.Utils;
+using UnityEngine;
 
 namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 {
@@ -14,19 +15,25 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
         public EnemyAttackState(EnemyStateMachine stateMachine, int index) : base(stateMachine)
         {
             Debug.Log("Enter Attack State");
-            attack = stateMachine.Combo.GetCurrentAttack(index);
+            attack = stateMachine.GetCurrentAttack(index);
         }
 
         public override void EnterState()
         {
             stateMachine.Weapon.SetAttackDamage(attack.KnockBack, attack.BlockDamage);
             stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, TransitionDuration);
-            stateMachine.Animator.speed = attack.AnimSpeed;
+
+            if (stateMachine.IsPhase2)
+            {
+                stateMachine.Animator.speed = attack.Phase2Speed;
+            }
+            else
+            {
+                stateMachine.Animator.speed = attack.AnimSpeed;
+            }
+
             stateMachine.SetInterrupt(attack.CanBeInterrupt);
             cantFacePlayer = attack.CantFacePlayer;
-            
-            
-            
         }
 
         public override void UpdateState(float deltaTime)
@@ -49,7 +56,7 @@ namespace MainGame.StateMachine.Enemy.Normal_Enemy_State_Machine
 
                 TryComboAttack(normalizeTime);
             }
-            
+
 
             previousFrameTIme = normalizeTime;
         }
