@@ -21,16 +21,16 @@ public class HealthDisplay : MonoBehaviour
         maxHealthDurability = health.MaxHealth;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         transform.LookAt(Camera.main.transform);
 
-        UpdateHealth();
+        // UpdateHealth();
         UpdateBlock();
 
     }
 
-    private void UpdateHealth()
+    protected virtual void UpdateHealth()
     {
         var percent = health.CurrentHealth / maxHealthDurability;
         if (percent >= 1) return;
@@ -40,7 +40,7 @@ public class HealthDisplay : MonoBehaviour
         healthProgress.sizeDelta = new Vector2(newWidth, healthProgress.sizeDelta.y);
     }
     
-    private void UpdateBlock()
+    protected virtual void UpdateBlock()
     {
         var percent = blockDurability.currentBlock / maxDurability;
         if (percent >= 1) return;

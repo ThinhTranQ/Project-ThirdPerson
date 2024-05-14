@@ -16,6 +16,7 @@ public class EnemyReviveState : EnemyBaseState
     {
         stateMachine.Fainted = false;
         stateMachine.Animator.CrossFadeInFixedTime(Revive, CrossFadeDuration);
+        stateMachine.phase2Particle.gameObject.SetActive(true);
         EffectManager.Instance.SpawnBuffParticle(stateMachine.transform);
     }
 

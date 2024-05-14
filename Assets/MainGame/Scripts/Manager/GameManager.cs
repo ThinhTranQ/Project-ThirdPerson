@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
    public GameObject wall;
 
    private int index;
+
+   private int count;
    
    private void Start()
    {
@@ -33,19 +35,26 @@ public class GameManager : MonoBehaviour
 
    private void OnEnemyDie()
    {
+      count++;
       StartCoroutine(DelaySpawnEnemy());
       
-      // if (!level2.gameObject.activeInHierarchy)
-      // {
-      //    level2.gameObject.SetActive(true);
-      //    return;
-      // }
-      //
-      // if (!level3.gameObject.activeInHierarchy)
-      // {
-      //    level3.gameObject.SetActive(true);
-      //    return;
-      // }
+      if (!level2.gameObject.activeInHierarchy)
+      {
+         level2.gameObject.SetActive(true);
+         return;
+      }
+      
+      if (!level3.gameObject.activeInHierarchy)
+      {
+         level3.gameObject.SetActive(true);
+         return;
+      }
+
+      if (count >= 3)
+      {
+         UIManager.Instance.ShowGameWin();
+      }
+      
    }
 
    private IEnumerator DelaySpawnEnemy()

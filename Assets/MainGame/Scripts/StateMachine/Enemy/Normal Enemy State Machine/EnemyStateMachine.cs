@@ -19,27 +19,29 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Target              Target              { get; protected set; }
     [field: SerializeField] public Ragdoll             Ragdoll             { get; protected set; }
 
-    [field: SerializeField] public EnemyCombo Combo      { get; private set; }
-    [field: SerializeField] public Transform  bloodSpawn { get; private set; }
+    [field: SerializeField] public EnemyCombo Combo { get; private set; }
 
     [field: SerializeField] public BlockDurability BlockDurability { get; private set; }
 
-    public                         Health Player             { get; private set; }
-    [field: SerializeField] public float  PlayerChasingRange { get; protected set; }
-    [field: SerializeField] public float  MovementSpeed      { get; protected set; }
-    [field: SerializeField] public float  AttackRange        { get; protected set; }
-    [field: SerializeField] public bool   CanInterrupt       { get; protected set; }
+    [field: SerializeField] public float PlayerChasingRange { get; protected set; }
+    [field: SerializeField] public float MovementSpeed      { get; protected set; }
+    [field: SerializeField] public float AttackRange        { get; protected set; }
+    [field: SerializeField] public bool  CanInterrupt       { get; protected set; }
 
     [field: SerializeField] public bool IsBlocking { get; private set; }
 
     [field: SerializeField] public bool Fainted;
-
-    public bool canFireProjectile;
+    
+    public Health      Player      { get; private set; }
+    public InputReader PlayerInput { get; private set; }
+    public GameObject  phase2Particle;
+    
+    
+    public bool        canFireProjectile;
 
     public bool IsPhase2 { get; private set; }
 
-    public bool        cannotTransit;
-    public InputReader PlayerInput { get; private set; }
+    public bool cannotTransit;
 
     private bool isAlreadyBS;
 
@@ -144,18 +146,16 @@ public class EnemyStateMachine : StateMachine
     public void TriggerDeadState()
     {
         OnDeathExecution();
-        // StartCoroutine(DelayDeath());
-
+       
     }
 
-    public  void Revive()
+    public void Revive()
     {
         IsPhase2    = true;
         isAlreadyBS = false;
         BlockDurability.DecreaseBlockBar();
         Combo.ChangePhaseCombo();
         StartCoroutine(DelayRevive());
-
     }
 
     private void OnDeathExecution()
@@ -171,13 +171,13 @@ public class EnemyStateMachine : StateMachine
         Destroy(Target);
         GetComponentInChildren<HealthDisplay>().gameObject.SetActive(false);
     }
-  
-    
+
+
     IEnumerator DelayRevive()
     {
         EffectManager.Instance.SpawnReviveParticle(transform);
         yield return new WaitForSeconds(3);
-        
+
         SwitchState(new EnemyReviveState(this));
     }
 

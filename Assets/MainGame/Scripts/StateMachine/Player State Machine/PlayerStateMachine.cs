@@ -6,24 +6,23 @@ using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
-    [field: SerializeField] public        InputReader         InputReader            { get; private set; }
-    [field: SerializeField] public        CharacterController CharacterController    { get; private set; }
-    [field: SerializeField] public  Animator            Animator               { get; private set; }
-    [field: SerializeField] public        Targeter            Targeter               { get; private set; }
-    [field: SerializeField] public        Attack[]            AttackCombo            { get; private set; }
-    [field: SerializeField] public        WeaponHandler       WeaponHandler          { get; private set; }
-    [field: SerializeField] public        ForceReceiver       ForceReceiver          { get; private set; }
-    [field: SerializeField] public        WeaponDamage        WeaponDamage           { get; private set; }
-    [field: SerializeField] public        Health              Health                 { get; private set; }
-    [field: SerializeField] public        Ragdoll             Ragdoll                { get; private set; }
-    [field: SerializeField] public        BlockDurability     BlockDurability        { get; private set; }
-    [field: SerializeField] public        float               FreeLookMovementSpeed  { get; private set; }
-    [field: SerializeField] public        float               TargetingMovementSpeed { get; private set; }
-    [field: SerializeField] public        float               RotationDamping        { get; private set; }
-    [field: SerializeField] public        float               DodgeDuration          { get; private set; }
-    [field: SerializeField] public        float               DodgeDistance          { get; private set; }
-    [field: SerializeField] public        bool                CanDeflect             { get; set; }
-    [field: SerializeField] public        bool                IsBlocking             { get; set; }
+    [field: SerializeField] public InputReader         InputReader            { get; private set; }
+    [field: SerializeField] public CharacterController CharacterController    { get; private set; }
+    [field: SerializeField] public Animator            Animator               { get; private set; }
+    [field: SerializeField] public Targeter            Targeter               { get; private set; }
+    [field: SerializeField] public Attack[]            AttackCombo            { get; private set; }
+    [field: SerializeField] public WeaponHandler       WeaponHandler          { get; private set; }
+    [field: SerializeField] public ForceReceiver       ForceReceiver          { get; private set; }
+    [field: SerializeField] public WeaponDamage        WeaponDamage           { get; private set; }
+    [field: SerializeField] public Health              Health                 { get; private set; }
+    [field: SerializeField] public BlockDurability     BlockDurability        { get; private set; }
+    [field: SerializeField] public float               FreeLookMovementSpeed  { get; private set; }
+    [field: SerializeField] public float               TargetingMovementSpeed { get; private set; }
+    [field: SerializeField] public float               RotationDamping        { get; private set; }
+    [field: SerializeField] public float               DodgeDuration          { get; private set; }
+    [field: SerializeField] public float               DodgeDistance          { get; private set; }
+    [field: SerializeField] public bool                CanDeflect             { get; set; }
+    [field: SerializeField] public bool                IsBlocking             { get; set; }
 
     public bool      Fainted;
     public Transform MainCamera { get; private set; }
@@ -55,6 +54,8 @@ public class PlayerStateMachine : StateMachine
 
     private void HandleDie()
     {
+        print("On Die");
+        UIManager.Instance.ShowGameLose();
         SwitchState(new PlayerDeadState(this));
     }
 

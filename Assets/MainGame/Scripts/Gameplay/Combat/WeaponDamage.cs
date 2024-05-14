@@ -99,7 +99,6 @@ public class WeaponDamage : MonoBehaviour
 
     public void SetAttackDamage( float knockBack, float blockDamage)
     {
-        this.damage      = damage;
         this.knockBack   = knockBack;
         this.blockDamage = blockDamage;
     }
