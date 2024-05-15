@@ -903,8 +903,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockDurability: {fileID: 0}
   health: {fileID: 0}
-  progress: {fileID: 0}
-  healthProgress: {fileID: 0}
+  progress: {fileID: 6946218846020419791}
+  healthProgress: {fileID: 6946218846020419791}
   speed: 0
 --- !u!1 &6910972399536843763
 GameObject:
@@ -923,7 +923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5645814929845713807
 RectTransform:
   m_ObjectHideFlags: 0

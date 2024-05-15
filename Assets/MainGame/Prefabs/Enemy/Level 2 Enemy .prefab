@@ -66,7 +66,6 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 1571501566319913714}
   <Ragdoll>k__BackingField: {fileID: 1786972039060014272}
   <Combo>k__BackingField: {fileID: 8353018835809946158}
-  <bloodSpawn>k__BackingField: {fileID: 0}
   <BlockDurability>k__BackingField: {fileID: 8607853089317830717}
   <PlayerChasingRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 6
@@ -74,6 +73,8 @@ MonoBehaviour:
   <CanInterrupt>k__BackingField: 0
   <IsBlocking>k__BackingField: 0
   Fainted: 0
+  phase2Particle: {fileID: 0}
+  canFireProjectile: 0
   cannotTransit: 0
 --- !u!143 &7084121895137088895
 CharacterController:
@@ -94,13 +95,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.75
-  m_Radius: 0.25
+  m_Height: 2
+  m_Radius: 0.65
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.03
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 1.38, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!195 &5427033401645791070
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
+  currentHealth: 0
   isInvulnerable: 0
 --- !u!114 &3304162622503776597
 MonoBehaviour:
@@ -193,6 +195,7 @@ MonoBehaviour:
   comboLists:
   - {fileID: 11400000, guid: f46b434641ba3514d95b0cb3381951ca, type: 2}
   - {fileID: 11400000, guid: e6c15fe9fc556674aadada15ce15cac6, type: 2}
+  phase2Combo: []
   canChangeCombo: 1
 --- !u!114 &208603943173936374
 MonoBehaviour:
@@ -222,6 +225,7 @@ MonoBehaviour:
   currentBlock: 0
   delay: 0
   decreaseSpd: 1
+  numberOfBlockBar: 0
 --- !u!1 &3886468695707350119
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,12 +373,12 @@ PrefabInstance:
     - target: {fileID: 3954462920158250338, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3954462920158250338, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3954462920158250338, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
@@ -427,6 +431,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3062942829774682981, guid: 56a6d720cee1fda4693ffdadead71944,
         type: 3}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.13302228
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7544065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.63302225
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.11161895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622347787960129688, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9017384348724073279, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: m_Name
@@ -494,12 +528,12 @@ PrefabInstance:
         type: 3}
       propertyPath: progress
       value: 
-      objectReference: {fileID: 8973854665501844216}
+      objectReference: {fileID: 5959831022930434488}
     - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
       propertyPath: healthProgress
       value: 
-      objectReference: {fileID: 1586403656018707961}
+      objectReference: {fileID: 5959831022930434488}
     - target: {fileID: 2159965342223985654, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
       propertyPath: blockDurability
@@ -675,21 +709,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e074b8d6a079d6845929711fc3e0a785, type: 3}
---- !u!224 &1586403656018707961 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2653876070051519630, guid: e074b8d6a079d6845929711fc3e0a785,
-    type: 3}
-  m_PrefabInstance: {fileID: 3661566692337965431}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5176935653339374657 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8433082719485689142, guid: e074b8d6a079d6845929711fc3e0a785,
     type: 3}
   m_PrefabInstance: {fileID: 3661566692337965431}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &8973854665501844216 stripped
+--- !u!224 &5959831022930434488 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5645814929845713807, guid: e074b8d6a079d6845929711fc3e0a785,
+  m_CorrespondingSourceObject: {fileID: 6946218846020419791, guid: e074b8d6a079d6845929711fc3e0a785,
     type: 3}
   m_PrefabInstance: {fileID: 3661566692337965431}
   m_PrefabAsset: {fileID: 0}
