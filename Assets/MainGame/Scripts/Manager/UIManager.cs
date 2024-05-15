@@ -7,6 +7,7 @@ public class UIManager : Singleton<UIManager>, IUIManager
 
     public GameObject uiWin;
     public GameObject uiLose;
+    public GameObject uiBossEncounter;
     protected override void Initial()
     {
         base.Initial();
@@ -20,7 +21,12 @@ public class UIManager : Singleton<UIManager>, IUIManager
 
     public void ShowGameLose()
     {
-        uiLose.SetActive(false);
+        uiLose.SetActive(true);
+    }
+
+    public void ShowBossEncounter()
+    {
+        uiBossEncounter.SetActive(true);
     }
 }
 
@@ -29,4 +35,6 @@ public interface IUIManager
 {
     public void ShowGameWin();
     public void ShowGameLose();
+
+    public void ShowBossEncounter();
 }
