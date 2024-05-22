@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,10 +16,13 @@ public class Stage : MonoBehaviour
     
     private void Awake()
     {
-        GetComponentInChildren<Button>().onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene($"GamePlay {index}");
-        });
+        GetComponentInChildren<Button>().onClick.AddListener(StartLoadingScene);
+    }
+
+    private void StartLoadingScene()
+    {
+        LoadingScene.instance.LoadScene($"GamePlay {index}");
+       
     }
 
     public void InitData(int index, int star, bool isFirstStage)

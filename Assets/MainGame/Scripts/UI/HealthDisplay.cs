@@ -15,7 +15,7 @@ public class HealthDisplay : MonoBehaviour
     private float maxDurability;
     public  float speed;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         maxDurability       = blockDurability.BLOCk_MAX;
         maxHealthDurability = health.MaxHealth;

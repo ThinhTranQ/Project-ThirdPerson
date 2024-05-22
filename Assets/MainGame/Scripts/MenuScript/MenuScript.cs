@@ -15,9 +15,6 @@ public class MenuScript : MonoBehaviour
     [Header("Level Selection")] 
     public Button btnBack;
     
-    public GameObject selectionPanel;
-    
-    
     
     private void Awake()
     {
@@ -25,16 +22,15 @@ public class MenuScript : MonoBehaviour
         btnBack.onClick.AddListener(OnBackMenu);
         
         menuPanel.SetActive(true);
-        selectionPanel.SetActive(false);
     }
 
     private void OnBackMenu()
     {
-        selectionPanel.gameObject.SetActive(false);
+       LoadingScene.instance.TriggerStagePanel(false);
     }
 
     private void OnStartGame()
     {
-        selectionPanel.gameObject.SetActive(true);
+        LoadingScene.instance.TriggerStagePanel(true);
     }
 }
