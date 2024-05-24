@@ -1,76 +1,65 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MainGame.Utils;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-   public EnemyStateMachine level1;
-   public EnemyStateMachine level2;
-   public EnemyStateMachine level3;
+    public static GameManager instance;
 
-   public GameObject wall;
+    public EnemyStateMachine[] enemiesInStage;
+    // public EnemyStateMachine   level1;
+    // public EnemyStateMachine   level2;
+    // public EnemyStateMachine   level3;
 
-   private int index;
+    public GameObject wall;
 
-   private int count;
-   
-   private void Start()
-   {
-      level1.Health.OnDie += OnEnemyDie;
-      level2.Health.OnDie += OnEnemyDie;
-      level3.Health.OnDie += OnEnemyDie;
-      
-      level2.gameObject.SetActive(false);
-      level3.gameObject.SetActive(false);
+    private int index;
 
-   }
+    private int count;
 
-   private void OnDestroy()
-   {
-      level1.Health.OnDie -= OnEnemyDie;
-      level2.Health.OnDie -= OnEnemyDie;
-      level3.Health.OnDie -= OnEnemyDie;
-   }
+    protected override void Initial()
+    {
+        base.Initial();
+        instance = InstancePrivate;
+    }
 
-   private void OnEnemyDie()
-   {
-      count++;
-      StartCoroutine(DelaySpawnEnemy());
-      
-      if (!level2.gameObject.activeInHierarchy)
-      {
-         level2.gameObject.SetActive(true);
-         return;
-      }
-      
-      if (!level3.gameObject.activeInHierarchy)
-      {
-         level3.gameObject.SetActive(true);
-         return;
-      }
+    private void Start()
+    {
+        foreach (var enemy in enemiesInStage)
+        {
+            enemy.Health.OnDie += OnEnemyDie;
+        }
 
-      if (count >= 3)
-      {
-         UIManager.Instance.ShowGameWin();
-      }
-      
-   }
+        for (int i = 0; i < enemiesInStage.Length; i++)
+        {
+            enemiesInStage[i].gameObject.SetActive(i == 0);
+        }
+    }
 
-   private IEnumerator DelaySpawnEnemy()
-   {
-      yield return new WaitForSeconds(3f);
-      if (!level2.gameObject.activeInHierarchy)
-      {
-         level2.gameObject.SetActive(true);
-         yield break;
-      }
+    private void OnDestroy()
+    {
+        foreach (var enemy in enemiesInStage)
+        {
+            enemy.Health.OnDie -= OnEnemyDie;
+        }
+    }
 
-      if (!level3.gameObject.activeInHierarchy)
-      {
-         level3.gameObject.SetActive(true);
-         wall.SetActive(false);
-         yield break;
-      }
-   }
+    private void OnEnemyDie()
+    {
+        count++;
+        if (count >= enemiesInStage.Length)
+        {
+            UIManager.Instance.ShowGameWin();
+            return;
+        }
+        StartCoroutine(DelaySpawnEnemy());
+    }
+
+    private IEnumerator DelaySpawnEnemy()
+    {
+        yield return new WaitForSeconds(3f);
+        enemiesInStage[count].gameObject.SetActive(true);
+    }
 }

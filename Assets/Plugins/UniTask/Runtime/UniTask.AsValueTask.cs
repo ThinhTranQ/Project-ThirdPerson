@@ -14,23 +14,23 @@ namespace Cysharp.Threading.Tasks
 {
     public static class UniTaskValueTaskExtensions
     {
-        public static ValueTask AsValueTask(this in UniTask task)
-        {
-#if (UNITASK_NETCORE && NETSTANDARD2_0)
-            return new ValueTask(new UniTaskValueTaskSource(task), 0);
-#else
-            return task;
-#endif
-        }
-
-        public static ValueTask<T> AsValueTask<T>(this in UniTask<T> task)
-        {
-#if (UNITASK_NETCORE && NETSTANDARD2_0)
-            return new ValueTask<T>(new UniTaskValueTaskSource<T>(task), 0);
-#else
-            return task;
-#endif
-        }
+//         public static ValueTask AsValueTask(this in UniTask task)
+//         {
+// #if (UNITASK_NETCORE && NETSTANDARD2_0)
+//             return new ValueTask(new UniTaskValueTaskSource(task), 0);
+// #else
+//             return task;
+// #endif
+//         }
+//
+//         public static ValueTask<T> AsValueTask<T>(this in UniTask<T> task)
+//         {
+// #if (UNITASK_NETCORE && NETSTANDARD2_0)
+//             return new ValueTask<T>(new UniTaskValueTaskSource<T>(task), 0);
+// #else
+//             return task;
+// #endif
+//         }
 
         public static async UniTask<T> AsUniTask<T>(this ValueTask<T> task)
         {

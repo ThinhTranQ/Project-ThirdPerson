@@ -1,4 +1,5 @@
 ﻿using System;
+using MainGame.Utils;
 using UnityEngine;
 
 public class PlayerCollideManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class PlayerCollideManager : MonoBehaviour
         if (other.CompareTag("Interactable"))
         {
             other.GetComponent<IInteractable>().DoAction();
+            
+            
         }
     }
 }

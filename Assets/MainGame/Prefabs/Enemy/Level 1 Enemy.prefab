@@ -308,10 +308,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e891565f01ed44128b0918e03f93657c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboLists2:
+  - {fileID: 11400000, guid: ae9bba71f8942a546a3f05821fba543d, type: 2}
+  canChangeCombo: 1
   comboLists:
   - {fileID: 11400000, guid: ae9bba71f8942a546a3f05821fba543d, type: 2}
   phase2Combo: []
-  canChangeCombo: 1
 --- !u!114 &3464596119308802612
 MonoBehaviour:
   m_ObjectHideFlags: 0

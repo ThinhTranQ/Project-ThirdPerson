@@ -66,7 +66,6 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 4858001495778728667}
   <Ragdoll>k__BackingField: {fileID: 3520968296310192937}
   <Combo>k__BackingField: {fileID: 770311367291524734}
-  <bloodSpawn>k__BackingField: {fileID: 0}
   <BlockDurability>k__BackingField: {fileID: 4774533497748806267}
   <PlayerChasingRange>k__BackingField: 10
   <MovementSpeed>k__BackingField: 6
@@ -74,6 +73,7 @@ MonoBehaviour:
   <CanInterrupt>k__BackingField: 0
   <IsBlocking>k__BackingField: 0
   Fainted: 0
+  phase2Particle: {fileID: 0}
   canFireProjectile: 0
   cannotTransit: 0
 --- !u!143 &9125561402237631362
@@ -192,13 +192,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e891565f01ed44128b0918e03f93657c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboLists2:
+  - {fileID: 11400000, guid: c65abd414efb3944aa28c6c422a594ba, type: 2}
+  - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
+  - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
+  - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
+  canChangeCombo: 0
   comboLists:
   - {fileID: 11400000, guid: c65abd414efb3944aa28c6c422a594ba, type: 2}
   - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
   - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
   - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
-  phase2Combo: []
-  canChangeCombo: 0
+  phase2Combo:
+  - {fileID: 11400000, guid: 2f69071636ca3604aa51921641d79dc2, type: 2}
+  - {fileID: 11400000, guid: 7eaf8127b4642a2498ddc023571c43a7, type: 2}
+  - {fileID: 11400000, guid: c65abd414efb3944aa28c6c422a594ba, type: 2}
+  - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
+  - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
+  - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
 --- !u!114 &2459134900875157303
 MonoBehaviour:
   m_ObjectHideFlags: 0

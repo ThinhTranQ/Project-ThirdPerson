@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombo : MonoBehaviour
+public class EnemyCombo : EntityCombo
 {
-    public List<ComboList> comboLists;
-
-    public List<ComboList> phase2Combo;
-
+    // public  List<ComboList>   comboLists;
+    public  List<ComboList>   phase2Combo;
     private EnemyStateMachine enemy;
-    private ComboList         currentCombo;
-
-    private int  currentIndex;
-    public  bool canChangeCombo;
-
-    private bool isPhase2;
+    private bool              isPhase2;
 
     private void Start()
     {
@@ -25,22 +18,15 @@ public class EnemyCombo : MonoBehaviour
 
     public void ChangePhaseCombo()
     {
-        isPhase2     = true;
+        isPhase2 = true;
         // ChangeCombo();
         currentIndex = 0;
         ImplementCombo();
     }
 
-    private void ImplementCombo()
+    protected override void ImplementCombo()
     {
-        if (isPhase2)
-        {
-            currentCombo = phase2Combo[currentIndex];
-        }
-        else
-        {
-            currentCombo = comboLists[currentIndex];
-        }
+        currentCombo = isPhase2 ? phase2Combo[currentIndex] : comboLists2[currentIndex];
 
         currentCombo.ImplementCombo(enemy);
     }
@@ -50,7 +36,7 @@ public class EnemyCombo : MonoBehaviour
         return currentCombo.attacks[index];
     }
 
-    public void ChangeCombo()
+    public override void ChangeCombo()
     {
         currentIndex++;
         if (isPhase2)
@@ -62,13 +48,12 @@ public class EnemyCombo : MonoBehaviour
         }
         else
         {
-            if (currentIndex >= comboLists.Count)
+            if (currentIndex >= comboLists2.Count)
             {
                 currentIndex = 0;
             }
         }
-      
-        
+
 
         if (!canChangeCombo)
         {

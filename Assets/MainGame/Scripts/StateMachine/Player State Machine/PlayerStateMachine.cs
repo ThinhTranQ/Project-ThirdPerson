@@ -11,6 +11,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public Animator            Animator               { get; private set; }
     [field: SerializeField] public Targeter            Targeter               { get; private set; }
     [field: SerializeField] public Attack[]            AttackCombo            { get; private set; }
+    [field: SerializeField] public PlayerCombo         PlayerCombo            { get; private set; }
     [field: SerializeField] public WeaponHandler       WeaponHandler          { get; private set; }
     [field: SerializeField] public ForceReceiver       ForceReceiver          { get; private set; }
     [field: SerializeField] public WeaponDamage        WeaponDamage           { get; private set; }
