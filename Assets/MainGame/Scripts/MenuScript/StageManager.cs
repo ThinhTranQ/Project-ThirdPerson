@@ -18,5 +18,6 @@ public class StageManager : MonoBehaviour
 public static class TOPICNAME
 {
     public const string STAGE = "STAGE";
+    public const string SKILL = "SKILL";
 }
 

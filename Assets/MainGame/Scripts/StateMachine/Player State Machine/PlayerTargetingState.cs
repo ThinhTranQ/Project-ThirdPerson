@@ -21,6 +21,7 @@ public class PlayerTargetingState : PlayerBaseState
     {
         stateMachine.InputReader.CancelEvent += OnCancelTargetingState;
         stateMachine.InputReader.DodgeEvent  += OnDodge;
+        stateMachine.InputReader.SkillEvent  += OnUseSkill;
       
         stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CROSS_FADE_DURATION);
     }
@@ -61,9 +62,14 @@ public class PlayerTargetingState : PlayerBaseState
        
         stateMachine.InputReader.DodgeEvent  -= OnDodge;
         stateMachine.InputReader.CancelEvent -= OnCancelTargetingState;
+        stateMachine.InputReader.SkillEvent  += OnUseSkill;
     }
 
- 
+    private void OnUseSkill()
+    {
+        stateMachine.OnUseSKill();
+    }
+
 
     private void OnDodge()
     {

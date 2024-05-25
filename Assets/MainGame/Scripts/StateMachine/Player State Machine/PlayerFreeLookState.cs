@@ -14,18 +14,10 @@ public class PlayerFreeLookState : PlayerBaseState
     private const float CROSS_FADE_DURATION = .1f;
     public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine){}
     
-    // we can make another variable and it would call base store the statemachine and then it would store x variable
-    // private int x;
-    // public PlayerTestState(PlayerStateMachine stateMachine, int x) : base(stateMachine)
-    // {
-    //     this.x = x;
-    // }
-
-    
-    
     public override void EnterState()
     {
         stateMachine.InputReader.TargetEvent += OnTargetTrigger;
+        stateMachine.InputReader.SkillEvent  += OnUseSkill;
         
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CROSS_FADE_DURATION);
 
@@ -57,6 +49,12 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void ExitState() 
     {
         stateMachine.InputReader.TargetEvent -= OnTargetTrigger;
+        stateMachine.InputReader.SkillEvent  += OnUseSkill;
+    }
+
+    private void OnUseSkill()
+    {
+        stateMachine.OnUseSKill();
     }
 
     private void OnTargetTrigger()
