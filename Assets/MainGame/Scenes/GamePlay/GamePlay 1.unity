@@ -313,6 +313,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6383717164068948807, guid: 68a1249c904a45a469c3170956ab3000,
+        type: 3}
+      propertyPath: stageIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2103,18 +2108,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1721352573}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &949104684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2677512920921741859, guid: 56a6d720cee1fda4693ffdadead71944,
-    type: 3}
-  m_PrefabInstance: {fileID: 1721352573}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68450f4280cd23e4aa3e6f824554efd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &975934304
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,18 +3284,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1445511291}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452712455 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4824210556025337868, guid: 8166d012f91d100428c9137a8cb88672,
-    type: 3}
-  m_PrefabInstance: {fileID: 1445511291}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68450f4280cd23e4aa3e6f824554efd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1498191652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4731,9 +4712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df5ea8f0b9e583a4a87070ce650ca42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1: {fileID: 949104684}
-  level2: {fileID: 1452712455}
-  level3: {fileID: 2035823568}
+  enemiesInStage: []
   wall: {fileID: 1781432546}
 --- !u!1001 &2006285664
 PrefabInstance:
@@ -5087,18 +5066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponLogic: {fileID: 2035823554}
   playerStateMachine: {fileID: 0}
---- !u!114 &2035823568 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5071173772279237909, guid: 9909454dc063c7846832e33a288833ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2035823552}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68450f4280cd23e4aa3e6f824554efd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2073418147
 GameObject:
   m_ObjectHideFlags: 0

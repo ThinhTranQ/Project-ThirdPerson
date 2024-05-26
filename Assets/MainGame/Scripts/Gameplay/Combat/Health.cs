@@ -10,7 +10,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float currentHealth;
 
     [SerializeField]private bool isInvulnerable;
-    
+
+    private bool isInvulnerableBySkill;
     
     
     public float MaxHealth => maxHealth;
@@ -35,6 +36,11 @@ public class Health : MonoBehaviour
         this.isInvulnerable = isInvulnerable;
     }
 
+    public void SetInvulnerableBySkill(bool isInvulnerable)
+    {
+        this.isInvulnerableBySkill = isInvulnerable;
+    }
+    
     public void DieByBackStab()
     {
         OnDie?.Invoke();
@@ -45,8 +51,10 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             return;
-        } 
+        }
 
+        if (isInvulnerableBySkill) return;
+        
         if (isInvulnerable) return;
         
         currentHealth = Mathf.Max(currentHealth - damage, 0);

@@ -65,6 +65,7 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 5089011122006389330}
   <Target>k__BackingField: {fileID: 4858001495778728667}
   <Ragdoll>k__BackingField: {fileID: 3520968296310192937}
+  <Collider>k__BackingField: {fileID: 9125561402237631362}
   <Combo>k__BackingField: {fileID: 770311367291524734}
   <BlockDurability>k__BackingField: {fileID: 4774533497748806267}
   <PlayerChasingRange>k__BackingField: 10
@@ -198,11 +199,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
   - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
   canChangeCombo: 0
-  comboLists:
-  - {fileID: 11400000, guid: c65abd414efb3944aa28c6c422a594ba, type: 2}
-  - {fileID: 11400000, guid: c6c04ab0309b3e44aa694727dd8dbd7e, type: 2}
-  - {fileID: 11400000, guid: 9dee2491d6d4f694cbf0c4e2b32a3bb4, type: 2}
-  - {fileID: 11400000, guid: 5cce9916234d9c04d985ed858d7f8333, type: 2}
   phase2Combo:
   - {fileID: 11400000, guid: 2f69071636ca3604aa51921641d79dc2, type: 2}
   - {fileID: 11400000, guid: 7eaf8127b4642a2498ddc023571c43a7, type: 2}

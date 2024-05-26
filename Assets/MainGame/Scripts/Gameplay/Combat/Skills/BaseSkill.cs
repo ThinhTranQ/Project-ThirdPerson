@@ -13,6 +13,11 @@ public class BaseSkill : MonoBehaviour, ISkill
 
     public float castingDuration;
     public float maxCastDuration;
+
+    protected       PlayerStateMachine player;
+    protected       Animator           animator;
+    protected const float              CROSS_FADE_DURATION = .1f;
+
     public virtual void ActiveSkill(PlayerStateMachine playerStateMachine)
     {
     }
@@ -21,9 +26,27 @@ public class BaseSkill : MonoBehaviour, ISkill
     {
     }
 
-    public virtual void UpdateSkill()
+    protected virtual void UpdateSkill()
     {
-       
+        if (!startCastSkill)
+        {
+            return;
+        }
+
+
+        skillDuration   -= Time.deltaTime;
+        castingDuration -= Time.deltaTime;
+
+        if (castingDuration <= 0)
+        {
+            isDoneCasting = true;
+        }
+
+        if (skillDuration <= 0)
+        {
+            isDoneSkill = true;
+            DeActiveSkill(player);
+        }
     }
 
     private void Update()

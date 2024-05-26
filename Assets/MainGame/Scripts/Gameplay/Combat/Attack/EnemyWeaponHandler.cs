@@ -14,7 +14,7 @@ public class EnemyWeaponHandler : WeaponHandler
           base.EnableWeapon();
           if (enemyStateMachine.canFireProjectile)
           {
-               EffectManager.Instance.SpawnSlashEff(transform);
+               EffectManager.Instance.SpawnSlashEff(transform, enemyStateMachine.Collider);
           }
      }
 

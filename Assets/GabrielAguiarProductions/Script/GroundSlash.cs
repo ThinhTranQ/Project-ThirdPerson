@@ -15,6 +15,8 @@ public class GroundSlash : MonoBehaviour
 
     private int index;
 
+    public Collider owner;
+    
     private void Update()
     {
         timedelay -= Time.deltaTime;
@@ -29,8 +31,9 @@ public class GroundSlash : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.GetComponent<Health>())
         {
+            if (other == owner) return;
             if (other.TryGetComponent<ForceReceiver>(out var forceReceiver))
             {
                 var direction = (other.transform.position - transform.position).normalized;
@@ -78,5 +81,6 @@ public class GroundSlash : MonoBehaviour
                 health.TakeDamage(0);
             }
         }
+       
     }
 }

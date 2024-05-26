@@ -15,7 +15,7 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
 
     public GameObject buffParticle;
 
-    public GameObject slashParticle;
+    public GroundSlash slashParticle;
     protected override void Initial()
     {
         base.Initial();
@@ -47,9 +47,13 @@ public class EffectManager : Singleton<EffectManager>, IEffectManager
         var eff = buffParticle.Spawn(spawn.position, Quaternion.identity);
     }
 
-    public void SpawnSlashEff(Transform spawn)
+    public void SpawnSlashEff(Transform spawn, Collider playerOwned)
     {
         var eff = slashParticle.Spawn(spawn.position, spawn.rotation);
+        if (playerOwned)
+        {
+            eff.owner = playerOwned;
+        }
     }
 }
 
@@ -65,6 +69,6 @@ public interface IEffectManager
 
     public void SpawnBuffParticle(Transform spawn);
 
-    public void SpawnSlashEff(Transform spawn);
+    public void SpawnSlashEff(Transform spawn, Collider owner);
 
 }

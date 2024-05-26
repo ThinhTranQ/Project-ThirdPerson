@@ -9,6 +9,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private PlayerStateMachine playerStateMachine;
     private                  int                index;
 
+    private bool canTriggerSkill;
     public virtual void EnableWeapon()
     {
         weaponLogic.SetActive(true);
@@ -21,8 +22,18 @@ public class WeaponHandler : MonoBehaviour
         {
             AudioService.instance.PlaySfx(SoundFXData.Swing1);
         }
+
+        if (playerStateMachine != null && canTriggerSkill)
+        {
+            EffectManager.Instance.SpawnSlashEff(transform, playerStateMachine.Collider);
+        }
     }
 
+    public void SetTriggerSkill(bool isOn)
+    {
+        canTriggerSkill = isOn;
+    }
+    
     public void DisableWeapon()
     {
         weaponLogic.SetActive(false);
