@@ -12,6 +12,10 @@ public class PlayerSkillState : PlayerBaseState
     public override void EnterState()
     {
         currentSkill = stateMachine.PlayerSkillManager.GetCurrentSkill();
+        if (currentSkill == null)
+        {
+            Debug.LogError("Invalid Skill Index");
+        }
         currentSkill.ActiveSkill(stateMachine);
     }
 

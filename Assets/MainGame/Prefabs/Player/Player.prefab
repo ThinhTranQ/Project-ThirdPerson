@@ -164,7 +164,6 @@ MonoBehaviour:
   <DodgeDistance>k__BackingField: 3
   <CanDeflect>k__BackingField: 0
   <IsBlocking>k__BackingField: 0
-  isUsingSkill: 0
   Fainted: 0
 --- !u!114 &9144539786642365637
 MonoBehaviour:
@@ -302,9 +301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSkills:
-  - {fileID: 8028041592692009823}
-  - {fileID: 8608477927029845725}
   - {fileID: 1380099533853105770}
+  - {fileID: 8608477927029845725}
+  - {fileID: 8028041592692009823}
   isUsingSkill: 0
 --- !u!1 &353800188116985008
 GameObject:
@@ -450,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 863820611670772659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000034412775, y: 0.00000023841858, z: 2.236068}
+  m_LocalPosition: {x: -0.000000034412754, y: 0.00000023841858, z: 2.236068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -550,14 +549,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e8a51b036d4bb0836fb3c6bd79734c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconSkill: {fileID: 0}
   isDoneCasting: 0
-  isDoneSkill: 0
   startCastSkill: 0
-  transitionTime: 0.7
-  skillDuration: 0
   maxSkillDuration: 2.3
-  castingDuration: 0
   maxCastDuration: 2
+  maxSkillCD: 5
+  isUnlock: 0
 --- !u!1 &1739757544177276294
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +644,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3040473040655537935}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018189467, y: 0.0000000036388883, z: -8.664074e-10, w: 0.9998346}
+  m_LocalRotation: {x: 0.018189467, y: 0.0000000084082785, z: -0.0000000020022526,
+    w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -841,14 +840,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1891f5c4f74848379798f07d4cb11a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconSkill: {fileID: 0}
   isDoneCasting: 0
-  isDoneSkill: 0
   startCastSkill: 0
-  transitionTime: 0
-  skillDuration: 0
   maxSkillDuration: 7
-  castingDuration: 0
   maxCastDuration: 2
+  maxSkillCD: 5
+  isUnlock: 0
 --- !u!1 &4648428840508819536
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5415581158522395279}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000014901159, y: -0.0000000042819006, z: 9.379163e-10,
+  m_LocalRotation: {x: -0.000000014901159, y: -0.0000000041636663, z: 9.11882e-10,
     w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1207,14 +1205,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368460ef9594458384e7ea18ed645cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconSkill: {fileID: 0}
   isDoneCasting: 0
-  isDoneSkill: 0
   startCastSkill: 0
-  transitionTime: 0
-  skillDuration: 0
   maxSkillDuration: 10
-  castingDuration: 0
   maxCastDuration: 2
+  maxSkillCD: 10
+  isUnlock: 0
 --- !u!1 &7231706799707860303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7231706799707860303}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10758657, y: 0.000008928518, z: -0.0000009661966, w: 0.99419576}
+  m_LocalRotation: {x: 0.10758657, y: 0.000008928478, z: -0.0000009661923, w: 0.99419576}
   m_LocalPosition: {x: 4.2579, y: -0.06392884, z: -6.3239584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1755,7 +1752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8840737099861228723}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.01814147, y: 0.000000007111339, z: -0.0000000014227908,
+  m_LocalRotation: {x: -0.01814147, y: -0.000000025268491, z: 0.0000000050549716,
     w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

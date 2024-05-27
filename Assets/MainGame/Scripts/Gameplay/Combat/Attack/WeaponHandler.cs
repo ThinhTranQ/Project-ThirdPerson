@@ -45,7 +45,7 @@ public class WeaponHandler : MonoBehaviour
         print("Turn on Deflect");
         playerStateMachine.CanDeflect = true;
         playerStateMachine.Health.SetInvulnerable(true);
-    }
+    } 
 
     public virtual void DisableVulnerable()
     {

@@ -1,22 +1,24 @@
 ﻿using MainGame.Utils;
 using UnityEngine;
 
-public class UIManager : Singleton<UIManager>, IUIManager
+public class UIManager : MonoBehaviour, IUIManager
 {
     public static IUIManager Instance;
 
+    public GameObject uiPlayer;
     public GameObject uiWin;
     public GameObject uiLose;
     public GameObject uiBossEncounter;
-    protected override void Initial()
-    {
-        base.Initial();
-        Instance = InstancePrivate;
-    }
+    // protected override void Initial()
+    // {
+    //     base.Initial();
+    //     Instance = InstancePrivate;
+    // }
     
     public void ShowGameWin()
     {
         uiWin.SetActive(true);
+        
     }
 
     public void ShowGameLose()

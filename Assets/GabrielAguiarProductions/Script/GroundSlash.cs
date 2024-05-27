@@ -45,7 +45,7 @@ public class GroundSlash : MonoBehaviour
                 if (playerStateMachine.CanDeflect)
                 {
                     EffectManager.Instance.SpawnPerfectParry(other.ClosestPoint(transform.position));
-                    gameObject.SetActive(false);
+                    gameObject.Recycle();
                 }
                 else
                 {
@@ -75,11 +75,43 @@ public class GroundSlash : MonoBehaviour
                 }
             }
 
+            if (other.TryGetComponent<EnemyStateMachine>(out var enemyStateMachine))
+            {
+                // EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
+                enemyStateMachine.BlockDurability.IncreaseBlock(10, isPerfectParry: false);
+                
+                if (enemyStateMachine.IsBlocking)
+                {
+                    index++;
+                    if (index > 3)
+                    {
+                        index = 1;
+                    }
+
+                    switch (index)
+                    {
+                        case 1:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect1);
+                            break;
+                        case 2:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect2);
+                            break;
+                        case 3:
+                            AudioService.instance.PlaySfx(SoundFXData.Deflect3);
+                            break;
+                    }
+                }
+                
+            }
+            
+
             EffectManager.Instance.SpawnHitEffect(other.ClosestPoint(transform.position));
             if (other.TryGetComponent<Health>(out var health))
             {
                 health.TakeDamage(0);
             }
+            
+            gameObject.Recycle();
         }
        
     }

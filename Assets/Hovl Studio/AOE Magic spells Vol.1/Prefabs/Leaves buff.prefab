@@ -14712,6 +14712,7 @@ GameObject:
   - component: {fileID: 198665422404971792}
   - component: {fileID: 199525262819298474}
   - component: {fileID: 82749890454114064}
+  - component: {fileID: -42900956038079943}
   m_Layer: 0
   m_Name: Leaves buff
   m_TagString: Untagged
@@ -19707,6 +19708,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-42900956038079943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207179939759570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c5428bc7e8fa34c8020ac2e586c88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1325694965833828
 GameObject:
   m_ObjectHideFlags: 0

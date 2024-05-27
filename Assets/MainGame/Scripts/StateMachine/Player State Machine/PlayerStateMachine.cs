@@ -25,8 +25,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float               DodgeDistance          { get; private set; }
     [field: SerializeField] public bool                CanDeflect             { get; set; }
     [field: SerializeField] public bool                IsBlocking             { get; set; }
-
-    public bool      isUsingSkill;
+    
     public bool      Fainted;
     public Transform MainCamera { get; private set; }
 
@@ -98,17 +97,17 @@ public class PlayerStateMachine : StateMachine
     {
         if (!PlayerSkillManager.IsAnySkillAvailable())
         {
-            print("No Skill Available");
+            // print("No Skill Available");
             return;
         }
 
-        if (PlayerSkillManager.isUsingSkill)
+        if (!PlayerSkillManager.IsCurrentSkillIsDoneCD())
         {
-            print("Using skill");
+            // print("Using skill");
             return;
         }
         
         SwitchState(new PlayerSkillState(this));
-        print("Use Skill");
+        // print("Use Skill");
     }
 }

@@ -1,30 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PlayerSkillManager : MonoBehaviour
 {
-    public List<BaseSkill> baseSkills;
+    private PlayerStateMachine playerStateMachine;
+    private PlayerSkillUI      skillUI;
+    public  List<BaseSkill>    baseSkills;
 
-    private Dictionary<BaseSkill, bool> listSkills;
-
-    public int CurrentSkillIndex { get; private set; }
+    private Dictionary<int, BaseSkill> listSkills;
+    
+    public int currentSkillIndex { get; private set; }
 
     public bool isUsingSkill;
+
+    private BaseSkill currentSkill;
+    
     private void Awake()
     {
-        listSkills = new Dictionary<BaseSkill, bool>();
+        skillUI            = FindObjectOfType<PlayerSkillUI>();
+        playerStateMachine = GetComponent<PlayerStateMachine>();
+        listSkills         = new Dictionary<int, BaseSkill>();
         for (var i = 0; i < baseSkills.Count; i++)
         {
             bool isUnlock = PlayerPrefs.GetInt(TOPICNAME.SKILL + i) == 1;
+            var tempSkill = baseSkills[i];
             if (isUnlock)
             {
-                listSkills.Add(baseSkills[i], true);
+                tempSkill.UpdateSkillStatus(true);
+                listSkills.Add(i, tempSkill);
+            }
+            else
+            {
+                tempSkill.UpdateSkillStatus(false);
             }
         }
 
         //for testing
-        listSkills.Add(baseSkills[0], true);
+        // listSkills.Add(baseSkills[0], true);
+
+        if (listSkills.Count > 0)
+        {
+            currentSkill = listSkills[0];
+        }
+        
+        skillUI.InitSkill(currentSkill);
+        
+        
+        
+        playerStateMachine.InputReader.SkillChangeEvent += OnPlayerChangeSkill;
+    }
+    
+    
+    
+    [Button]
+    public void TestUnlockAllSkill()
+    {
+        for (var i = 0; i < baseSkills.Count; i++)
+        {
+          
+            PlayerPrefs.SetInt(TOPICNAME.SKILL+i, 1);
+            var currentSkill = baseSkills[i];
+            currentSkill.UpdateSkillStatus(true);
+            listSkills.Add(i, currentSkill);
+        }
+    }
+
+    public bool IsCurrentSkillIsDoneCD()
+    {
+        return currentSkill.SkillCD <= 0;
+    }
+    
+    private void OnPlayerChangeSkill()
+    {
+        if (!IsAnySkillAvailable()) return;
+        currentSkillIndex++;
+        if (currentSkillIndex >= listSkills.Count)
+        {
+            currentSkillIndex = 0;
+        }
+        print("Change skill:" + listSkills[currentSkillIndex].gameObject.name);
+        currentSkill = listSkills[currentSkillIndex];
+        skillUI.InitSkill(currentSkill);
+    }
+
+    private void OnDisable()
+    {
+        playerStateMachine.InputReader.SkillChangeEvent -= OnPlayerChangeSkill;
     }
 
     public bool IsAnySkillAvailable()
@@ -34,16 +97,13 @@ public class PlayerSkillManager : MonoBehaviour
 
     public BaseSkill GetCurrentSkill()
     {
-        return baseSkills[CurrentSkillIndex];
-    }
-
-    public void ActiveCurrentSkill()
-    {
-       
-    }
-
-    public bool IsUsingSkill()
-    {
-        return isUsingSkill;
+        return currentSkill;
+        
+        if (listSkills.ContainsKey(currentSkillIndex))
+        {
+            return listSkills[currentSkillIndex];
+        }
+        
+        return listSkills[0];
     }
 }

@@ -3,27 +3,50 @@ using UnityEngine;
 
 public class BaseSkill : MonoBehaviour, ISkill
 {
-    public bool  isDoneCasting;
-    public bool  isDoneSkill;
-    public bool  startCastSkill;
-    public float transitionTime;
+    public Sprite iconSkill;
 
-    public float skillDuration;
-    public float maxSkillDuration;
+    public bool isDoneCasting;
 
-    public float castingDuration;
-    public float maxCastDuration;
+    public bool startCastSkill;
+
+    private float skillDuration;
+    public  float maxSkillDuration;
+
+    private float castingDuration;
+    public  float maxCastDuration;
+
+    public float SkillCD { get; private set; }
+    public float maxSkillCD;
 
     protected       PlayerStateMachine player;
     protected       Animator           animator;
     protected const float              CROSS_FADE_DURATION = .1f;
 
+    public bool isUnlock;
+
     public virtual void ActiveSkill(PlayerStateMachine playerStateMachine)
     {
+        player   = playerStateMachine;
+        animator = player.Animator;
+        SkillCD  = maxSkillCD;
+
+        skillDuration   = maxSkillDuration;
+        castingDuration = maxCastDuration;
     }
 
     public virtual void DeActiveSkill(PlayerStateMachine playerStateMachine)
     {
+    }
+
+    public void OnSkillDoneCooldown()
+    {
+        startCastSkill = false;
+        isDoneCasting  = false;
+    }
+
+    public void UpdateSkillStatus(bool isUnlock)
+    {
+        this.isUnlock = isUnlock;
     }
 
     protected virtual void UpdateSkill()
@@ -33,7 +56,7 @@ public class BaseSkill : MonoBehaviour, ISkill
             return;
         }
 
-
+        SkillCD         -= Time.deltaTime;
         skillDuration   -= Time.deltaTime;
         castingDuration -= Time.deltaTime;
 
@@ -44,22 +67,18 @@ public class BaseSkill : MonoBehaviour, ISkill
 
         if (skillDuration <= 0)
         {
-            isDoneSkill = true;
             DeActiveSkill(player);
+        }
+
+        if (SkillCD <= 0)
+        {
+            OnSkillDoneCooldown();
         }
     }
 
     private void Update()
     {
         UpdateSkill();
-    }
-
-    protected virtual void ReloadSkill()
-    {
-        startCastSkill  = false;
-        isDoneSkill     = false;
-        skillDuration   = maxSkillDuration;
-        castingDuration = maxCastDuration;
     }
 }
 
@@ -68,4 +87,6 @@ public interface ISkill
     public void ActiveSkill(PlayerStateMachine playerStateMachine);
 
     public void DeActiveSkill(PlayerStateMachine playerStateMachine);
+
+    public void OnSkillDoneCooldown();
 }

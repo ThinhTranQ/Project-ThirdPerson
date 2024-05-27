@@ -107,6 +107,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""086a00af-295e-4d1f-b20a-5fde215189d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -340,6 +349,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bdf3994-a130-40ae-84b1-d06d00009337"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -385,6 +405,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
+        m_Player_ChangeSkill = m_Player.FindAction("ChangeSkill", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -455,6 +476,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_Skill;
+    private readonly InputAction m_Player_ChangeSkill;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -468,6 +490,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @Skill => m_Wrapper.m_Player_Skill;
+        public InputAction @ChangeSkill => m_Wrapper.m_Player_ChangeSkill;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -504,6 +527,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Skill.started += instance.OnSkill;
             @Skill.performed += instance.OnSkill;
             @Skill.canceled += instance.OnSkill;
+            @ChangeSkill.started += instance.OnChangeSkill;
+            @ChangeSkill.performed += instance.OnChangeSkill;
+            @ChangeSkill.canceled += instance.OnChangeSkill;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -535,6 +561,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Skill.started -= instance.OnSkill;
             @Skill.performed -= instance.OnSkill;
             @Skill.canceled -= instance.OnSkill;
+            @ChangeSkill.started -= instance.OnChangeSkill;
+            @ChangeSkill.performed -= instance.OnChangeSkill;
+            @ChangeSkill.canceled -= instance.OnChangeSkill;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -581,5 +610,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
+        void OnChangeSkill(InputAction.CallbackContext context);
     }
 }
