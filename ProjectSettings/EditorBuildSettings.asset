@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainGame/Scenes/GamePlay/GamePlay 2.unity
     guid: 7df7a79e552d9477da946ae072ac23b4
+  - enabled: 1
+    path: Assets/3rdLibrary/PolygonSamurai/Scenes/Demo.unity
+    guid: 9a36afe203cf34b4fad518f34185f921
   m_configObjects: {}
