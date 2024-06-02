@@ -108,11 +108,6 @@ public class EnemyStateMachine : StateMachine
         Gizmos.DrawWireSphere(transform.position, PlayerChasingRange);
     }
 
-    [Button]
-    public void TransitionToAttack()
-    {
-        SwitchState(new EnemyAttackState(this, 0));
-    }
 
     public void ImplementNewCombo(ComboList comboList)
     {

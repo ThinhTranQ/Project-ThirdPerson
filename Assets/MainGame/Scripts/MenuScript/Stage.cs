@@ -17,6 +17,7 @@ public class Stage : MonoBehaviour
     private void Awake()
     {
         GetComponentInChildren<Button>().onClick.AddListener(StartLoadingScene);
+        
     }
 
     private void StartLoadingScene()

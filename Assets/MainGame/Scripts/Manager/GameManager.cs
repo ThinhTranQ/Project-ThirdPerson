@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using MainGame.Utils;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
     public EnemyStateMachine[] enemiesInStage;
     // public EnemyStateMachine   level1;
     // public EnemyStateMachine   level2;
@@ -18,12 +16,7 @@ public class GameManager : Singleton<GameManager>
     private int index;
 
     private int count;
-
-    protected override void Initial()
-    {
-        base.Initial();
-        instance = InstancePrivate;
-    }
+    
 
     private void Start()
     {

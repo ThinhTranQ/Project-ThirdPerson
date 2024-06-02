@@ -525,6 +525,46 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6630801
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.065043926
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.058012165
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7434573
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199057375802383611, guid: 20e132d5eab0efd43b0376cc23e860ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -96.541
+      objectReference: {fileID: 0}
     - target: {fileID: 6244734788314962794, guid: 20e132d5eab0efd43b0376cc23e860ba,
         type: 3}
       propertyPath: source
@@ -4203,6 +4243,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HealthDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901852745873801821, guid: e074b8d6a079d6845929711fc3e0a785,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6243485882991850731, guid: e074b8d6a079d6845929711fc3e0a785,
         type: 3}
