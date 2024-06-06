@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using MainGame.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,11 @@ public class LoadingScene : Singleton<LoadingScene>
      private float      value;
      public  GameObject loadingPanel;
      public  GameObject stageSelectPanel;
+     public  GameObject introPanel;
+     
+     public  Image      blackScreen;
+     
+     
      public  Slider     loadingSlider;
 
      private bool startLoad;
@@ -19,6 +25,21 @@ public class LoadingScene : Singleton<LoadingScene>
      {
           base.Initial();
           instance = InstancePrivate;
+     }
+
+     private void Start()
+     {
+          Sequence fadeSequence = DOTween.Sequence();
+
+          fadeSequence.Append(blackScreen.DOFade(0f, 1f))
+                      .AppendInterval(2)
+                      .Append(blackScreen.DOFade( 1, 1f)).OnComplete(() =>
+                      {
+                           introPanel.SetActive(false);
+                           blackScreen.gameObject.SetActive(false);
+                           gameObject.SetActive(false);
+                      });
+          
      }
 
      private void Update()
