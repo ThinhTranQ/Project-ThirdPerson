@@ -12475,6 +12475,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1085233317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3949320030074688261, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2283719169800603190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1133833635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18087,6 +18093,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1622926275}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1629426970 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8480044842032808635, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2283719169800603190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1632232303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23733,27 +23751,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 614192819153316794, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+    - target: {fileID: 592686405735182845, guid: 875a7686f355e754f9bdc4a8bce64d5a,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: introPanel
+      value: 
+      objectReference: {fileID: 1085233317}
+    - target: {fileID: 592686405735182845, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+        type: 3}
+      propertyPath: blackScreen
+      value: 
+      objectReference: {fileID: 1629426970}
     - target: {fileID: 614192819153316794, guid: 875a7686f355e754f9bdc4a8bce64d5a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2134511134698522392, guid: 875a7686f355e754f9bdc4a8bce64d5a,
         type: 3}
       propertyPath: m_Name
       value: LoadingCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5388957530325691121, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+    - target: {fileID: 3544708123138501791, guid: 875a7686f355e754f9bdc4a8bce64d5a,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 3969b951b080fad4ba2b61a74bacc3cd,
-        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8204320860269177302, guid: 875a7686f355e754f9bdc4a8bce64d5a,
         type: 3}
       propertyPath: m_IsActive
@@ -23858,6 +23880,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109319798241273115, guid: 875a7686f355e754f9bdc4a8bce64d5a,
+        type: 3}
+      propertyPath: m_Name
+      value: Blackscreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
