@@ -25,7 +25,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float               DodgeDistance          { get; private set; }
     [field: SerializeField] public bool                CanDeflect             { get; set; }
     [field: SerializeField] public bool                IsBlocking             { get; set; }
-    
+
     public bool      Fainted;
     public Transform MainCamera { get; private set; }
 
@@ -57,7 +57,7 @@ public class PlayerStateMachine : StateMachine
     private void HandleDie()
     {
         print("On Die");
-        UIManager.Instance.ShowGameLose();
+        FindObjectOfType<UIManager>().ShowGameLose();
         SwitchState(new PlayerDeadState(this));
     }
 
@@ -106,7 +106,7 @@ public class PlayerStateMachine : StateMachine
             // print("Using skill");
             return;
         }
-        
+
         SwitchState(new PlayerSkillState(this));
         // print("Use Skill");
     }

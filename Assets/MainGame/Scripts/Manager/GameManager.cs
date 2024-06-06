@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
         count++;
         if (count >= enemiesInStage.Length)
         {
-            UIManager.Instance.ShowGameWin();
+            print("out of enemy");
+            FindObjectOfType<UIManager>().ShowGameWin();
             return;
         }
         StartCoroutine(DelaySpawnEnemy());

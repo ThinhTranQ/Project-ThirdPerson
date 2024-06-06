@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour, IUIManager
 {
-    public static IUIManager Instance;
-
     public GameObject uiPlayer;
     public GameObject uiWin;
     public GameObject uiLose;

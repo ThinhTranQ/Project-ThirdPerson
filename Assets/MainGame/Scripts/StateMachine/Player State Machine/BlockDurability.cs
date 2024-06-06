@@ -22,6 +22,7 @@ public class BlockDurability : MonoBehaviour
     }
     public void IncreaseBlock(float number, bool isPerfectParry)
     {
+        print("increase block " + number);
         currentBlock += number;
         delay        =  5;
         if (currentBlock >= BLOCk_MAX && !isPerfectParry)

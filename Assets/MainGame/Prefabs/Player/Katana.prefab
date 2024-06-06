@@ -39,62 +39,67 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7622347787960129688}
+    m_TransformParent: {fileID: 5199057375802383611}
     m_Modifications:
     - target: {fileID: 683023410679435416, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_Name
       value: WeaponLogic
       objectReference: {fileID: 0}
-    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
+    - target: {fileID: 683023410679435416, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 99.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.31667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0037057006
+      value: -4.100025
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.49967194
+      value: -18.809898
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.08709494
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000007450607
+      value: -0.003255393
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000008202124
+      value: 0.9954994
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000019924627
+      value: -0.03721331
       objectReference: {fileID: 0}
     - target: {fileID: 8362767420288040929, guid: 9e281708e98dca14986f963e971006e2,
         type: 3}
@@ -196,7 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 425942, guid: 79aa677bbe2b9a74b91bad978448ce88,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 7121315110047040194}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79aa677bbe2b9a74b91bad978448ce88, type: 3}
 --- !u!4 &5199057375802383611 stripped
@@ -279,11 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400000, guid: bf3739b4d53347c4ab88bad4e567aafa,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7121315110047040194}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf3739b4d53347c4ab88bad4e567aafa, type: 3}
 --- !u!4 &7622347787960129688 stripped

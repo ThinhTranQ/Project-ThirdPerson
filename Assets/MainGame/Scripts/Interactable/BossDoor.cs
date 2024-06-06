@@ -4,6 +4,6 @@ public class BossDoor : MonoBehaviour, IInteractable
 {
     public void DoAction()
     {
-        UIManager.Instance.ShowBossEncounter();
+        FindObjectOfType<UIManager>().ShowBossEncounter();
     }
 }
