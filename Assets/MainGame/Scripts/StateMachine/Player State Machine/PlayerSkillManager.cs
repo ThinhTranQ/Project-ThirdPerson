@@ -10,13 +10,13 @@ public class PlayerSkillManager : MonoBehaviour
     public  List<BaseSkill>    baseSkills;
 
     private Dictionary<int, BaseSkill> listSkills;
-    
+
     public int currentSkillIndex { get; private set; }
 
     public bool isUsingSkill;
 
     private BaseSkill currentSkill;
-    
+
     private void Awake()
     {
         skillUI            = FindObjectOfType<PlayerSkillUI>();
@@ -37,30 +37,28 @@ public class PlayerSkillManager : MonoBehaviour
             }
         }
 
-        //for testing
-        // listSkills.Add(baseSkills[0], true);
-
+       
         if (listSkills.Count > 0)
         {
             currentSkill = listSkills[0];
+
+
+            playerStateMachine.InputReader.SkillChangeEvent += OnPlayerChangeSkill;
+            skillUI.InitSkill(currentSkill);
         }
-        
-        skillUI.InitSkill(currentSkill);
-        
-        
-        
-        playerStateMachine.InputReader.SkillChangeEvent += OnPlayerChangeSkill;
+        else
+        {
+            skillUI.TriggerSkillUI(false);
+        }
     }
-    
-    
-    
+
+
     [Button]
     public void TestUnlockAllSkill()
     {
         for (var i = 0; i < baseSkills.Count; i++)
         {
-          
-            PlayerPrefs.SetInt(TOPICNAME.SKILL+i, 1);
+            PlayerPrefs.SetInt(TOPICNAME.SKILL + i, 1);
             var currentSkill = baseSkills[i];
             currentSkill.UpdateSkillStatus(true);
             listSkills.Add(i, currentSkill);
@@ -71,7 +69,7 @@ public class PlayerSkillManager : MonoBehaviour
     {
         return currentSkill.SkillCD <= 0;
     }
-    
+
     private void OnPlayerChangeSkill()
     {
         if (!IsAnySkillAvailable()) return;
@@ -80,6 +78,7 @@ public class PlayerSkillManager : MonoBehaviour
         {
             currentSkillIndex = 0;
         }
+
         print("Change skill:" + listSkills[currentSkillIndex].gameObject.name);
         currentSkill = listSkills[currentSkillIndex];
         skillUI.InitSkill(currentSkill);
@@ -98,12 +97,12 @@ public class PlayerSkillManager : MonoBehaviour
     public BaseSkill GetCurrentSkill()
     {
         return currentSkill;
-        
+
         if (listSkills.ContainsKey(currentSkillIndex))
         {
             return listSkills[currentSkillIndex];
         }
-        
+
         return listSkills[0];
     }
 }

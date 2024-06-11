@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BlockDurability : MonoBehaviour
 {
-    public  float BLOCk_MAX = 100;
-    
+    public float BLOCk_MAX = 100;
+    public float phase2_Block;
     
     public float currentBlock = 0;
 
@@ -19,6 +19,7 @@ public class BlockDurability : MonoBehaviour
     public void DecreaseBlockBar()
     {
         numberOfBlockBar -= 1;
+        BLOCk_MAX        =  phase2_Block;
     }
     public void IncreaseBlock(float number, bool isPerfectParry)
     {

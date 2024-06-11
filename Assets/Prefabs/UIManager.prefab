@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2976913225700938387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3144,7 +3144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1799713209921155390
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4293,6 +4293,7 @@ MonoBehaviour:
   skillSprite: {fileID: 1084453428705568896}
   currentSkill: {fileID: 0}
   cooldownImg: {fileID: 950422893185187307}
+  content: {fileID: 6707117928191634691}
 --- !u!1 &7016443659351130491
 GameObject:
   m_ObjectHideFlags: 0

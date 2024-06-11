@@ -10,9 +10,12 @@ public class PlayerSkillUI : MonoBehaviour
 
     private bool startFetch;
 
-    public Image cooldownImg;
-    
-    
+    public Image      cooldownImg;
+    public GameObject content;
+    public void TriggerSkillUI(bool isOn)
+    {
+        content.SetActive(isOn);
+    }
     public void InitSkill(BaseSkill skill)
     {
         currentSkill = skill;

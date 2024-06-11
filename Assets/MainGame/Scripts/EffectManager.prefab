@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5359138210968669570}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,3 +47,9 @@ MonoBehaviour:
   hitEffect: {fileID: 142060, guid: 67374d3ca0b3eb74983e945af267bc0d, type: 3}
   perfectEff: {fileID: 139844, guid: bd9cbf3a6ae77524788b4bbdb5422498, type: 3}
   bloodStabParticle: {fileID: 119212, guid: 67a02ea392505844bab240611d904cc0, type: 3}
+  reviveParticle: {fileID: 1269619656826376, guid: 5c734c7bc14483a4d9b880211468f63d,
+    type: 3}
+  buffParticle: {fileID: 1207179939759570, guid: 3cefa829969829542bf182f16e268213,
+    type: 3}
+  slashParticle: {fileID: 4364861999203606392, guid: 938ed41f40e2cc943926e8083e15cdd5,
+    type: 3}

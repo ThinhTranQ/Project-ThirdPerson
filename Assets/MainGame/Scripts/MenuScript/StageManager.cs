@@ -4,7 +4,9 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public Stage[] stages;
-
+    
+    
+    
     private void OnEnable()
     {
         for (int i = 0; i < stages.Length; i++)

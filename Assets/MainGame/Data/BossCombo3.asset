@@ -24,7 +24,7 @@ MonoBehaviour:
     <KnockBack>k__BackingField: 30
     <CantFacePlayer>k__BackingField: 0
     <CanBeInterrupt>k__BackingField: 0
-    <BlockDamage>k__BackingField: 0
+    <BlockDamage>k__BackingField: 20
     <AnimSpeed>k__BackingField: 0.7
     <Phase2Speed>k__BackingField: 1.2
     <CanFireProjectile>k__BackingField: 0

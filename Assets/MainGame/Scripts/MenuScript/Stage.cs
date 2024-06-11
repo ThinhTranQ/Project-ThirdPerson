@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class Stage : MonoBehaviour
 {
     public int          index;
     public int          numberStar;
+    public TMP_Text     stageName;
     public GameObject[] starContainer;
 
     public GameObject lockPanel;
@@ -28,8 +30,9 @@ public class Stage : MonoBehaviour
 
     public void InitData(int index, int star, bool isFirstStage)
     {
-        this.index = index;
-        numberStar = star;
+        this.index     = index;
+        numberStar     = star;
+        stageName.text = (index+1).ToString();
         if (numberStar <= 0 && isFirstStage)
         {
             lockPanel.gameObject.SetActive(true);
